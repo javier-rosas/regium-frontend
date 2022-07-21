@@ -1,0 +1,44 @@
+.movieRow {
+  margin-top : 15px
+}
+
+.card {
+  margin-top : 15px
+}
+
+.moviesListCard {
+  width : 18rem;
+  position : relative;
+  z-index: 1;
+}
+
+div.poster {
+  margin : 10px
+}
+
+.smallPoster {
+  user-select : none;
+  position: relative;
+}
+
+.star {
+  width : 32.5em; 
+  height : 4em;
+  filter : drop-shadow(2px 4px 6px black); 
+  position : absolute;
+  top: 0;
+  left : 0;
+  z-index: 2;
+  margin-left: -3%;
+
+}
+
+.starFill {
+  fill : yellow;
+
+}
+
+.starEmpty {
+  fill : white;
+ 
+}
