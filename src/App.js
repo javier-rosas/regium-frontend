@@ -7,12 +7,12 @@ import { useState, useEffect, useCallback } from "react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Login from "./components/Login.js";
 import Logout from "./components/Logout.js";
-import MoviesList from "./components/MoviesList";
-import AddReview from "./components/AddReview";
-import Movie from "./components/Movie";
+import NftList from "./components/NftList";
+// import AddReview from "./components/AddReview";
+import Nft from "./components/Nft";
 import React from "react";
-import FavoritesDataService from "./services/favorites";
-import Favorites from "./components/Favorites.js";
+// import FavoritesDataService from "./services/favorites";
+// import Favorites from "./components/Favorites.js";
 
 import "./App.css";
 

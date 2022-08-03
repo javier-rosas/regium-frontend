@@ -15,11 +15,11 @@ function Nft({ user }) {
   let params = useParams();
   const [nft, setNft] = useState({
     id: null,
-    title: "",
-    rated: "",
+    name: "",
+    // rated: "",
     reviews: [],
-    plot: "",
-    poster: "",
+    description: "",
+    imageLink: "",
   });
 
   useEffect(() => {
@@ -31,11 +31,11 @@ function Nft({ user }) {
 
           let obj = {
             id: id,
-            title: response.data.title,
-            rated: response.data.rated,
+            name: response.data.name,
+            // rated: response.data.rated,
             reviews: response.data.reviews,
-            poster: response.data.poster,
-            plot: response.data.plot,
+            imageLink: response.data.imageLink,
+            description: response.data.description,
           };
           setNft(obj);
         })
@@ -69,7 +69,7 @@ function Nft({ user }) {
             <div className="poster">
               <Image
                 className="bigPicture"
-                src={movie.poster + "/100px250"}
+                src={nft.imageLink}
                 onError={(e) => {
                   e.target.onerror = null;
                   console.log(e);
@@ -81,9 +81,9 @@ function Nft({ user }) {
           </Col>
           <Col>
             <Card>
-              <Card.Header as="h5"> {movie.title} </Card.Header>
+              <Card.Header as="h5"> {nft.name} </Card.Header>
               <Card.Body>
-                <Card.Text>{movie.plot}</Card.Text>
+                <Card.Text>{nft.description}</Card.Text>
                 {/* {user && (
                   <Link to={`/movies/${params.id}/review`}>Add Review</Link>
                 )} */}
@@ -91,7 +91,7 @@ function Nft({ user }) {
             </Card>
             <h2>Reviews</h2>
             <br></br>
-            {movie.reviews.map((review, index) => {
+            {/* {movie.reviews.map((review, index) => {
               return (
                 <div className="d-flex" key={index}>
                   <div className="flex-shrink-0 reviewsText">
@@ -128,7 +128,7 @@ function Nft({ user }) {
                   </div>
                 </div>
               );
-            })}
+            })} */}
           </Col>
         </Row>
       </Container>

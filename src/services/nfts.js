@@ -7,10 +7,10 @@ class NftDataService {
     );
   }
 
-  find(query, by = "title", page = 0) {
-    if (by === "title") {
+  find(query, by = "name", page = 0) {
+    if (by === "name") {
       return axios.get(
-        `${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts?title=${query}&page=${page}`
+        `${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts?name=${query}&page=${page}`
       );
     } else if (by === "id") {
       return axios.get(

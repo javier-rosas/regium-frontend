@@ -18,12 +18,12 @@ function NftList({
   // deleteFavorite
 }) {
   const [nfts, setNfts] = useState([]);
-  const [searchTitle, setSearchTitle] = useState("");
+  const [searchName, setSearchName] = useState("");
   // const [searchRating, setSearchRating] = useState("");
   // const [ratings, setRatings] = useState(["All Ratings"]);
   const [currentPage, setCurrentPage] = useState(0);
   const [entriesPerPage, setEntriesPerPage] = useState(0);
-  // const [currentSearchMode, setCurrentSearchMode] = useState("");
+  const [currentSearchMode, setCurrentSearchMode] = useState("");
 
   // const retrieveRatings = useCallback(() => {
   //   NftDataService.getRatings()
@@ -36,7 +36,7 @@ function NftList({
   // }, []);
 
   const retrieveNfts = useCallback(() => {
-    // setCurrentSearchMode("");
+    setCurrentSearchMode("");
     NftDataService.getAll(currentPage)
       .then((response) => {
         setNfts(response.data.nfts);
@@ -52,7 +52,7 @@ function NftList({
     (query, by) => {
       NftDataService.find(query, by, currentPage)
         .then((response) => {
-          setMovies(response.data.movies);
+          setNfts(response.data.nfts);
         })
         .catch((e) => {
           console.log(e);
@@ -61,10 +61,10 @@ function NftList({
     [currentPage]
   );
 
-  const findByTitle = useCallback(() => {
-    // setCurrentSearchMode("findByTitle");
-    find(searchTitle, "title");
-  }, [find, searchTitle]);
+  const findByName = useCallback(() => {
+    setCurrentSearchMode("findByName");
+    find(searchName, "name");
+  }, [find, searchName]);
 
   // const findByRating = useCallback(() => {
   //   setCurrentSearchMode("findByRating");
@@ -77,8 +77,8 @@ function NftList({
 
   // Below method has been edited
   const retrieveNextPage = useCallback(() => {
-    findByTitle();
-  }, [findByTitle, retrieveNfts]);
+    findByName();
+  }, [findByName, retrieveNfts]);
 
   // useEffect(() => {
   //   retrieveRatings();
@@ -92,9 +92,9 @@ function NftList({
     retrieveNextPage();
   }, [currentPage, retrieveNextPage]);
 
-  const onChangeSearchTitle = (e) => {
-    const searchTitle = e.target.value;
-    setSearchTitle(searchTitle);
+  const onChangeSearchName = (e) => {
+    const searchName = e.target.value;
+    setSearchName(searchName);
   };
 
   // const onChangeSearchRating = (e) => {
@@ -111,17 +111,17 @@ function NftList({
               <Form.Group className="mb-3">
                 <Form.Control
                   type="text"
-                  placeholder="Search by title"
-                  value={searchTitle}
-                  onChange={onChangeSearchTitle}
+                  placeholder="Search by name"
+                  value={searchName}
+                  onChange={onChangeSearchName}
                 />
               </Form.Group>
-              <Button variant="primary" type="button" onClick={findByTitle}>
+              <Button variant="primary" type="button" onClick={findByName}>
                 Search
               </Button>
             </Col>
             <Col>
-              <Form.Group className="mb-3">
+              {/* <Form.Group className="mb-3">
                 <Form.Control as="select" onChange={onChangeSearchRating}>
                   {ratings.map((rating, i) => {
                     return (
@@ -131,47 +131,47 @@ function NftList({
                     );
                   })}
                 </Form.Control>
-              </Form.Group>
-              <Button variant="primary" type="button" onClick={findByRating}>
+              </Form.Group> */}
+              {/* <Button variant="primary" type="button" onClick={findByRating}>
                 Search
-              </Button>
+              </Button> */}
             </Col>
           </Row>
         </Form>
         <Row className="movieRow">
-          {movies.map((movie) => {
+          {nfts.map((nft) => {
             return (
-              <Col key={movie._id}>
+              <Col key={nft._id}>
                 <Card className="moviesListCard">
-                  {user &&
-                    (favorites.includes(movie._id) ? (
+                  {/* {user &&
+                    (favorites.includes(nft._id) ? (
                       <BsStarFill
                         className="star starFill"
                         onClick={() => {
-                          deleteFavorite(movie._id);
+                          deleteFavorite(nft._id);
                         }}
                       />
                     ) : (
                       <BsStar
                         className="star starEmpty"
                         onClick={() => {
-                          addFavorite(movie._id);
+                          addFavorite(nft._id);
                         }}
                       />
-                    ))}
+                    ))} */}
                   <Card.Img
                     className="smallPoster"
-                    src={movie.poster + "/100px180"}
+                    src={nft.imageLink}
                     onError={({ currentTarget }) => {
                       currentTarget.onerror = null;
                       currentTarget.src = "/images/stand-in.jpeg";
                     }}
                   />
                   <Card.Body>
-                    <Card.Title> {movie.title} </Card.Title>
-                    <Card.Text>Rating: {movie.rated}</Card.Text>
-                    <Card.Text>{movie.plot}</Card.Text>
-                    <Link to={"/movies/" + movie._id}>View Reviews</Link>
+                    <Card.Title> {nft.name} </Card.Title>
+                    <Card.Text>Rating: {nft.rated}</Card.Text>
+                    <Card.Text>{nft.description}</Card.Text>
+                    <Link to={"/nfts/" + nft._id}>View Reviews</Link>
                   </Card.Body>
                 </Card>
               </Col>
