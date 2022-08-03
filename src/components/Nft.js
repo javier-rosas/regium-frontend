@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import MovieDataService from "../services/nfts";
+import NftDataService from "../services/nfts";
 import { Link, useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
@@ -9,9 +9,11 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import moment from "moment";
 
-function Movie({ user }) {
+import "./Nft.css";
+
+function Nft({ user }) {
   let params = useParams();
-  const [movie, setMovie] = useState({
+  const [nft, setNft] = useState({
     id: null,
     title: "",
     rated: "",
@@ -21,9 +23,9 @@ function Movie({ user }) {
   });
 
   useEffect(() => {
-    const getMovie = (id) => {
+    const getNft = (id) => {
       // TODO:
-      MovieDataService.find(id, "id")
+      NftDataService.find(id, "id")
         .then((response) => {
           console.log(response);
 
@@ -35,29 +37,29 @@ function Movie({ user }) {
             poster: response.data.poster,
             plot: response.data.plot,
           };
-          setMovie(obj);
+          setNft(obj);
         })
         .catch((e) => {
           console.log(e);
         });
     };
-    getMovie(params.id);
+    getNft(params.id);
   }, [params.id]);
 
-  const onDeleteReview = (review, index) => {
-    MovieDataService.deleteReview(review)
-      .then((response) => {
-        setMovie((prevState) => {
-          prevState.reviews.splice(index, 1);
-          return {
-            ...prevState,
-          };
-        });
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+  // const onDeleteReview = (review, index) => {
+  //   NftDataService.deleteReview(review)
+  //     .then((response) => {
+  //       setMovie((prevState) => {
+  //         prevState.reviews.splice(index, 1);
+  //         return {
+  //           ...prevState,
+  //         };
+  //       });
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+  // };
 
   return (
     <div>
@@ -82,9 +84,9 @@ function Movie({ user }) {
               <Card.Header as="h5"> {movie.title} </Card.Header>
               <Card.Body>
                 <Card.Text>{movie.plot}</Card.Text>
-                {user && (
+                {/* {user && (
                   <Link to={`/movies/${params.id}/review`}>Add Review</Link>
-                )}
+                )} */}
               </Card.Body>
             </Card>
             <h2>Reviews</h2>
@@ -134,4 +136,4 @@ function Movie({ user }) {
   );
 }
 
-export default Movie;
+export default Nft;
