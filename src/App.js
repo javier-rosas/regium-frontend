@@ -11,8 +11,8 @@ import NftList from "./components/NftList";
 // import AddReview from "./components/AddReview";
 import Nft from "./components/Nft";
 import React from "react";
-// import FavoritesDataService from "./services/favorites";
-// import Favorites from "./components/Favorites.js";
+import FavoritesDataService from "./services/favorites";
+import Favorites from "./components/Favorites.js";
 
 import "./App.css";
 
@@ -20,8 +20,15 @@ const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 function App() {
   const [user, setUser] = useState(null);
-  // const [favorites, setFavorites] = useState([]);
-  //const [doUpdate, setDoUpdate] = useState(false);
+  const [favorites, setFavorites] = useState([]);
+
+  const addFavorite = (movieId) => {
+    setFavorites([...favorites, movieId]);
+  };
+
+  const deleteFavorite = (movieId) => {
+    setFavorites(favorites.filter((f) => f !== movieId));
+  };
 
   useEffect(() => {
     let loginData = JSON.parse(localStorage.getItem("login"));
@@ -37,49 +44,37 @@ function App() {
     }
   }, []);
 
-  // const retrieveFavorites = useCallback(() => {
-  //   FavoritesDataService.getFavorites(user.googleId)
-  //     .then((response) => {
-  //       const data = response.data.favorites;
-  //       setFavorites(data);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // }, [user]);
+  const retrieveFavorites = useCallback((user) => {
+    FavoritesDataService.getAllFavorites(user.googleId)
+      .then((response) => {
+        setFavorites(response.data.favorites);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
 
-  // const update = useCallback(() => {
-  //   FavoritesDataService.updateFavorites({
-  //     _id: user.googleId,
-  //     favorites: favorites,
-  //   }).catch((e) => {
-  //     console.log(e);
-  //   });
-  // }, [favorites, user]);
+  useEffect(() => {
+    if (user) {
+      retrieveFavorites(user);
+    }
+  }, [user]);
 
-  // useEffect(() => {
-  //   if (user && doUpdate) {
-  //     update();
-  //     setDoUpdate(false);
-  //   }
-  // }, [user, favorites, update, doUpdate]);
+  const updateFavorites = useCallback(() => {
+    var data = {
+      _id: user.googleId,
+      favorites: favorites,
+    };
+    FavoritesDataService.updateFavorites(data).catch((e) => {
+      console.log(e);
+    });
+  }, [favorites]);
 
-  // useEffect(() => {
-  //   if (user) {
-  //     retrieveFavorites();
-  //   }
-  // }, [user, retrieveFavorites]);
-
-  // const addFavorite = (movieId) => {
-  //   if (!favorites.includes(movieId)) {
-  //     setDoUpdate(true);
-  //     setFavorites([...favorites, movieId]);
-  //   }
-  // };
-
-  // const deleteFavorite = (movieId) => {
-  //   setFavorites(favorites.filter((f) => f !== movieId));
-  // };
+  useEffect(() => {
+    if (user) {
+      updateFavorites();
+    }
+  }, [favorites]);
 
   return (
     <GoogleOAuthProvider clientId={clientId}>
@@ -100,9 +95,11 @@ function App() {
                 <Nav.Link as={Link} to={"/nfts"}>
                   NFTs
                 </Nav.Link>
-                {/* <Nav.Link as={Link} to={"/favorites"}>
-                  Favorites
-                </Nav.Link> */}
+                {user && (
+                  <Nav.Link as={Link} to={"/favorites"}>
+                    Watchlist
+                  </Nav.Link>
+                )}
               </Nav>
             </Navbar.Collapse>
             {user ? <Logout setUser={setUser} /> : <Login setUser={setUser} />}
@@ -116,9 +113,9 @@ function App() {
             element={
               <NftList
                 user={user}
-                // addFavorite={addFavorite}
-                // deleteFavorite={deleteFavorite}
-                // favorites={favorites}
+                addFavorite={addFavorite}
+                deleteFavorite={deleteFavorite}
+                favorites={favorites}
               />
             }
           />
@@ -128,9 +125,9 @@ function App() {
             element={
               <NftList
                 user={user}
-                // addFavorite={addFavorite}
-                // deleteFavorite={deleteFavorite}
-                // favorites={favorites}
+                addFavorite={addFavorite}
+                deleteFavorite={deleteFavorite}
+                favorites={favorites}
               />
             }
           />
@@ -139,7 +136,7 @@ function App() {
             exact
             path={"/nfts/:id/review"}
             element={<AddReview user={user} />}
-          />
+          /> */}
           <Route
             exact
             path={"/favorites"}
@@ -150,7 +147,7 @@ function App() {
                 setFavorites={setFavorites}
               />
             }
-          /> */}
+          />
         </Routes>
       </div>
     </GoogleOAuthProvider>

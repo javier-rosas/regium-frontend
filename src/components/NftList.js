@@ -7,33 +7,28 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import { BsStar, BsStarFill } from "react-icons/bs";
+import { BsEye, BsEyeFill } from "react-icons/bs";
 
 import "./NftList.css";
 
-function NftList({
-  user,
-  // favorites,
-  // addFavorite,
-  // deleteFavorite
-}) {
+function NftList({ user, favorites, addFavorite, deleteFavorite }) {
   const [nfts, setNfts] = useState([]);
   const [searchName, setSearchName] = useState("");
-  // const [searchRating, setSearchRating] = useState("");
-  // const [ratings, setRatings] = useState(["All Ratings"]);
+  const [searchGenre, setSearchGenre] = useState("");
+  const [genres, setGenres] = useState(["All Genres"]);
   const [currentPage, setCurrentPage] = useState(0);
   const [entriesPerPage, setEntriesPerPage] = useState(0);
   const [currentSearchMode, setCurrentSearchMode] = useState("");
 
-  // const retrieveRatings = useCallback(() => {
-  //   NftDataService.getRatings()
-  //     .then((response) => {
-  //       setRatings(["All Ratings"].concat(response.data));
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // }, []);
+  const retrieveGenres = useCallback(() => {
+    NftDataService.getGenres()
+      .then((response) => {
+        setGenres(["All Genres"].concat(response.data));
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
 
   const retrieveNfts = useCallback(() => {
     setCurrentSearchMode("");
@@ -66,27 +61,32 @@ function NftList({
     find(searchName, "name");
   }, [find, searchName]);
 
-  // const findByRating = useCallback(() => {
-  //   setCurrentSearchMode("findByRating");
-  //   if (searchRating === "All Ratings") {
-  //     retrieveMovies();
-  //   } else {
-  //     find(searchRating, "rated");
-  //   }
-  // }, [find, searchRating, retrieveMovies]);
+  const findByGenre = useCallback(() => {
+    setCurrentSearchMode("findByGenre");
+    if (searchGenre === "All Genres") {
+      retrieveNfts();
+    } else {
+      find(searchGenre, "genre");
+    }
+  }, [find, searchGenre, retrieveNfts]);
 
-  // Below method has been edited
   const retrieveNextPage = useCallback(() => {
-    findByName();
-  }, [findByName, retrieveNfts]);
+    if (currentSearchMode === "findByName") {
+      findByName();
+    } else if (currentSearchMode === "findByGenre") {
+      findByGenre();
+    } else {
+      retrieveNfts();
+    }
+  }, [currentSearchMode, findByName, findByGenre, retrieveNfts]);
 
-  // useEffect(() => {
-  //   retrieveRatings();
-  // }, [retrieveRatings]);
+  useEffect(() => {
+    retrieveGenres();
+  }, [retrieveGenres]);
 
-  // useEffect(() => {
-  //   setCurrentPage(0);
-  // }, [currentSearchMode]);
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [currentSearchMode]);
 
   useEffect(() => {
     retrieveNextPage();
@@ -97,10 +97,10 @@ function NftList({
     setSearchName(searchName);
   };
 
-  // const onChangeSearchRating = (e) => {
-  //   const searchRating = e.target.value;
-  //   setSearchRating(searchRating);
-  // };
+  const onChangeSearchGenre = (e) => {
+    const searchGenre = e.target.value;
+    setSearchGenre(searchGenre);
+  };
 
   return (
     <div className="App">
@@ -121,20 +121,20 @@ function NftList({
               </Button>
             </Col>
             <Col>
-              {/* <Form.Group className="mb-3">
-                <Form.Control as="select" onChange={onChangeSearchRating}>
-                  {ratings.map((rating, i) => {
+              <Form.Group className="mb-3">
+                <Form.Control as="select" onChange={onChangeSearchGenre}>
+                  {genres.map((genre, i) => {
                     return (
-                      <option value={rating} key={i}>
-                        {rating}
+                      <option value={genre} key={i}>
+                        {genre}
                       </option>
                     );
                   })}
                 </Form.Control>
-              </Form.Group> */}
-              {/* <Button variant="primary" type="button" onClick={findByRating}>
+              </Form.Group>
+              <Button variant="primary" type="button" onClick={findByGenre}>
                 Search
-              </Button> */}
+              </Button>
             </Col>
           </Row>
         </Form>
@@ -143,22 +143,22 @@ function NftList({
             return (
               <Col key={nft._id}>
                 <Card className="moviesListCard">
-                  {/* {user &&
+                  {user &&
                     (favorites.includes(nft._id) ? (
-                      <BsStarFill
+                      <BsEyeFill
                         className="star starFill"
                         onClick={() => {
                           deleteFavorite(nft._id);
                         }}
                       />
                     ) : (
-                      <BsStar
+                      <BsEye
                         className="star starEmpty"
                         onClick={() => {
                           addFavorite(nft._id);
                         }}
                       />
-                    ))} */}
+                    ))}
                   <Card.Img
                     className="smallPoster"
                     src={nft.imageLink}

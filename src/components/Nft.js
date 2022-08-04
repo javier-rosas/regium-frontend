@@ -24,11 +24,8 @@ function Nft({ user }) {
 
   useEffect(() => {
     const getNft = (id) => {
-      // TODO:
       NftDataService.find(id, "id")
         .then((response) => {
-          console.log(response);
-
           let obj = {
             id: id,
             name: response.data.name,
@@ -37,6 +34,7 @@ function Nft({ user }) {
             imageLink: response.data.imageLink,
             description: response.data.description,
           };
+          // might cause bugs
           setNft(obj);
         })
         .catch((e) => {

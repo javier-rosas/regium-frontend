@@ -1,8 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&display=swap");
+
 .favoritesCard {
-  margin-top: 0;
-  width: 100%;
+  margin: 0.5rem;
+  cursor: move;
   display: flex;
   flex-direction: row;
+  border: 1px;
+  border-style: solid;
+  border-color: gray;
 }
 
 .favoritesPoster {
@@ -12,7 +17,7 @@
 }
 
 .favoritesNumber {
-  font-family: 'Jacques Francois Shadow', cursive;
+  font-family: "Jacques Francois Shadow", cursive;
   justify-content: center;
   color: blue;
   background-color: white;
@@ -58,4 +63,10 @@
 
 .favoritesContainer {
   display: flex;
+}
+
+.cardOuterDiv {
+  padding: 0.5rem;
+  margin: 0.7rem;
+  background-color: white;
 }

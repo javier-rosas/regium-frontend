@@ -16,16 +16,18 @@ class NftDataService {
       return axios.get(
         `${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts/id/${query}`
       );
-    } else if (by === "rated") {
+    } else if (by === "genre") {
       return axios.get(
-        `${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts?rated=${query}&page=${page}`
+        `${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts?genre=${query}&page=${page}`
       );
     }
   }
 
-  // getRatings() {
-  //     return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts/ratings`)
-  // }
+  getGenres() {
+    return axios.get(
+      `${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts/genres`
+    );
+  }
 
   // createReview(data) {
   //     return axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts/review`, data)
