@@ -23,7 +23,9 @@ const DnDContainer = ({ user, favorites }) => {
     };
 
     /*
-    Retrieve cards with nft information when page loads or when favorites changes (props load slowly, so we add the favorites dependency)
+    Retrieve cards with nft information 
+    when page loads or when favorites changes 
+    (props load slowly, so we add the favorites dependency)
     */
     useEffect(() => {
       async function fetchData() {
@@ -37,7 +39,8 @@ const DnDContainer = ({ user, favorites }) => {
     }, [favorites]);
 
     /*
-    Update the order of the favorites in the database. Makes a DB call whenever cards changes.
+    Update the order of the favorites in the database. 
+    Makes a DB call whenever cards changes.
     */
     useEffect(() => {
       if (cards.length !== 0) {
