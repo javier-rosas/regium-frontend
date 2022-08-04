@@ -159,14 +159,16 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
                         }}
                       />
                     ))}
-                  <Card.Img
-                    className="smallPoster"
-                    src={nft.imageLink}
-                    onError={({ currentTarget }) => {
-                      currentTarget.onerror = null;
-                      currentTarget.src = "/images/stand-in.jpeg";
-                    }}
-                  />
+                  <div className="nftImageDiv">
+                    <Card.Img
+                      className="smallPoster"
+                      src={nft.imageLink}
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src = "/images/stand-in.jpeg";
+                      }}
+                    />
+                  </div>
                   <Card.Body>
                     <Card.Title> {nft.name} </Card.Title>
                     <Card.Text>Rating: {nft.rated}</Card.Text>

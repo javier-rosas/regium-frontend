@@ -1,44 +1,50 @@
 .movieRow {
-  margin-top : 15px
+  margin-top: 15px;
 }
 
 .card {
-  margin-top : 15px
+  margin-top: 15px;
 }
 
 .moviesListCard {
-  width : 18rem;
-  position : relative;
+  width: 18rem;
+  position: relative;
   z-index: 1;
 }
 
+.nftImageDiv {
+  overflow: hidden;
+}
+
+.moviesListCard:hover .smallPoster {
+  transform: scale(1.2);
+}
+
 div.poster {
-  margin : 10px
+  margin: 10px;
 }
 
 .smallPoster {
-  user-select : none;
+  user-select: none;
   position: relative;
+  transition: 0.3s all ease-in-out;
 }
 
 .star {
-  width : 32.5em; 
-  height : 4em;
-  filter : drop-shadow(2px 4px 6px black); 
-  position : absolute;
+  width: 32.5em;
+  height: 4em;
+  filter: drop-shadow(2px 4px 6px black);
+  position: absolute;
   top: 0;
-  left : 0;
+  left: 0;
   z-index: 2;
   margin-left: -3%;
-
 }
 
 .starFill {
-  fill : yellow;
-
+  fill: yellow;
 }
 
 .starEmpty {
-  fill : white;
- 
+  fill: white;
 }
