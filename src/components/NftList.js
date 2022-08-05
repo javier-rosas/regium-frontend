@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import { BsEye, BsEyeFill } from "react-icons/bs";
+import { BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
 
 import "./NftList.css";
 
@@ -102,6 +102,16 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
     setSearchGenre(searchGenre);
   };
 
+  const updateLikes = (id, increaseFlag) => {
+    var data = {
+      _id: id,
+      increaseFlag: increaseFlag,
+    };
+    NftDataService.updateLikes(data).catch((e) => {
+      console.log(e);
+    });
+  };
+
   return (
     <div className="App">
       <Container className="main-container">
@@ -145,17 +155,19 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
                 <Card className="moviesListCard">
                   {user &&
                     (favorites.includes(nft._id) ? (
-                      <BsEyeFill
+                      <BsSuitHeartFill
                         className="star starFill"
                         onClick={() => {
                           deleteFavorite(nft._id);
+                          updateLikes(nft._id, false);
                         }}
                       />
                     ) : (
-                      <BsEye
+                      <BsSuitHeart
                         className="star starEmpty"
                         onClick={() => {
                           addFavorite(nft._id);
+                          updateLikes(nft._id, true);
                         }}
                       />
                     ))}

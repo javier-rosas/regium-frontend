@@ -13,6 +13,7 @@ import Nft from "./components/Nft";
 import React from "react";
 import FavoritesDataService from "./services/favorites";
 import Favorites from "./components/Favorites.js";
+import LandingPage from "./components/LandingPage.js";
 
 import "./App.css";
 
@@ -97,7 +98,7 @@ function App() {
                 </Nav.Link>
                 {user && (
                   <Nav.Link as={Link} to={"/favorites"}>
-                    Watchlist
+                    Wishlist
                   </Nav.Link>
                 )}
               </Nav>
@@ -107,18 +108,7 @@ function App() {
         </Navbar>
 
         <Routes>
-          <Route
-            exact
-            path={"/"}
-            element={
-              <NftList
-                user={user}
-                addFavorite={addFavorite}
-                deleteFavorite={deleteFavorite}
-                favorites={favorites}
-              />
-            }
-          />
+          <Route exact path={"/"} element={<LandingPage user={user} />} />
           <Route
             exact
             path={"/nfts"}

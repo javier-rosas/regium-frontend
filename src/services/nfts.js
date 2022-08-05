@@ -7,6 +7,12 @@ class NftDataService {
     );
   }
 
+  getMostLiked() {
+    return axios.get(
+      `${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts/most-liked`
+    );
+  }
+
   find(query, by = "name", page = 0) {
     if (by === "name") {
       return axios.get(
@@ -26,6 +32,13 @@ class NftDataService {
   getGenres() {
     return axios.get(
       `${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts/genres`
+    );
+  }
+
+  updateLikes(data) {
+    return axios.put(
+      `${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts/likes`,
+      data
     );
   }
 
