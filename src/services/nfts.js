@@ -42,6 +42,12 @@ class NftDataService {
     );
   }
 
+  getRandomNfts(num) {
+    return axios.get(
+      `${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts/random?num=${num}`
+    );
+  }
+
   // createReview(data) {
   //     return axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts/review`, data)
   // }

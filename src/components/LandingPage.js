@@ -12,10 +12,10 @@ import "./LandingPage.css";
 
 const LandingPage = ({ user }) => {
   const [nfts, setNfts] = useState([]);
+  const [nftOfTheDay, setNftOfTheDay] = useState(null);
 
   useEffect(() => {
     //console.log("getting most liked");
-    //console.log(nfts);
     NftDataService.getMostLiked()
       .then((response) => {
         //console.log(response);
@@ -24,32 +24,52 @@ const LandingPage = ({ user }) => {
       .catch((e) => {
         console.log(e);
       });
-    //console.log("got most liked");
-    //console.log(nfts);
+    // console.log("got most liked");
+  }, []);
+
+  useEffect(() => {
+    NftDataService.getRandomNfts(1)
+      .then((response) => {
+        setNftOfTheDay(response.data[0]);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, []);
 
   return (
-    <div>
+    <div className="landingPage">
       <Container>
         <Row>
           <Col>
             <h1>Uniq</h1>
-            <p>Explore, buy and sell exquisite NFTs</p>
+            <h3>Explore, buy and sell exquisite NFTs</h3>
           </Col>
           <Col>
-            <Image
-              className="bigPicture"
-              src="/images/stand-in.jpeg"
-              onError={(e) => {
-                e.target.onerror = null;
-                console.log(e);
-                e.target.src = "/images/stand-in.jpeg";
-              }}
-              fluid
-            />
+            <h4>NFT of the day</h4>
+            {nftOfTheDay && (
+              <Card className="moviesListCard">
+                <div className="nftImageDiv">
+                  <Card.Img
+                    className="smallPoster"
+                    src={nftOfTheDay.imageLink}
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null;
+                      currentTarget.src = "/images/stand-in.jpeg";
+                    }}
+                  />
+                </div>
+                <Card.Body>
+                  <Card.Title> {nftOfTheDay.name} </Card.Title>
+                  <Card.Text>Rating: {nftOfTheDay.rated}</Card.Text>
+                  <Card.Text>{nftOfTheDay.description}</Card.Text>
+                  <Link to={"/nfts/" + nftOfTheDay._id}>View Reviews</Link>
+                </Card.Body>
+              </Card>
+            )}
           </Col>
         </Row>
-        <Row>
+        <Row className="landingPageRow">
           <Col>
             <h2>Explore NFTs</h2>
             <p>
@@ -72,14 +92,14 @@ const LandingPage = ({ user }) => {
             </p>
           </Col>
         </Row>
-        <Row>
-          <h1>Most liked NFTs of all time</h1>
+        <Row className="landingPageRow">
+          <h2>Most liked NFTs of all time</h2>
           <Row className="movieRow">
             {nfts &&
               nfts.map((nft) => {
                 return (
                   <Col key={nft._id}>
-                    <Card className="moviesListCard">
+                    <Card className="topLikedCard">
                       <div className="nftImageDiv">
                         <Card.Img
                           className="smallPoster"

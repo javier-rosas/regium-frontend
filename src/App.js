@@ -8,6 +8,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import Login from "./components/Login.js";
 import Logout from "./components/Logout.js";
 import NftList from "./components/NftList";
+import Footer from "./components/Footer";
 // import AddReview from "./components/AddReview";
 import Nft from "./components/Nft";
 import React from "react";
@@ -139,6 +140,7 @@ function App() {
             }
           />
         </Routes>
+        <Footer />
       </div>
     </GoogleOAuthProvider>
   );

@@ -1,0 +1,16 @@
+/* 
+
+
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.footer {
+  flex-shrink: 0;
+  text-align: center;
+  background-color: tomato;
+  color: white;
+} */
