@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Uniq NFT Marketplace 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Creators: 
 
-## Available Scripts
+Javier Rosas Ruiz: rosasruiz.j@northeastern.edu
 
-In the project directory, you can run:
+Dhruv Sabharwal: sabharwal.d@northeastern.edu
 
-### `npm start`
+# Disclaimer: Javier Rosas had some issues with Git and Heroku, so he had to re-clone the repository on August 5. As a result, Javier Rosas's commits do not appear on Github analytics, but he did contribute to the project meaningfully.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Most code was written by the both of us or taken from the Movie Mern project we coded throughout the course. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Front end: 
 
-### `npm test`
+Landing Page: Dhruv Sabharwal 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Alt text](./pictures/landing_page_1.png?raw=true "Title")
 
-### `npm run build`
+![Alt text](./pictures/landing_page_2.png?raw=true "Title")
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+NFTs Page: Mostly Dhruv Sabharwal, but Javier contributed as well
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Collection Page: Javier Rosas Ruiz 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Wish List Page: Dhruv Sabharwal  
 
-### `npm run eject`
+Footer Component: Javier Rosas Ruiz 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+UserDataService: Javier Rosas Ruiz 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Buy Page: Dhruv Sabharwal & Javier Rosas Ruiz
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Backend: 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Initial database setup with sample data: Javier Rosas Ruiz 
 
-## Learn More
+User backend functionality: Javier Rosas Ruiz 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Liking backend functionality: Dhruv Sabharwal  
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Genre backend functionality: Javier Rosas Ruiz 
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+getRandomNFT functionality: Dhruv Sabharwal
