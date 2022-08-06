@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import NftDataService from "../services/nfts";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -19,6 +19,8 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
   const [currentPage, setCurrentPage] = useState(0);
   const [entriesPerPage, setEntriesPerPage] = useState(0);
   const [currentSearchMode, setCurrentSearchMode] = useState("");
+
+  const navigate = useNavigate();
 
   const retrieveGenres = useCallback(() => {
     NftDataService.getGenres()
@@ -152,7 +154,10 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
           {nfts.map((nft) => {
             return (
               <Col key={nft._id}>
-                <Card className="moviesListCard">
+                <Card
+                  className="moviesListCard"
+                  onClick={() => navigate("/nfts/" + nft._id)}
+                >
                   {user &&
                     (favorites.includes(nft._id) ? (
                       <BsSuitHeartFill
@@ -185,7 +190,7 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
                     <Card.Title> {nft.name} </Card.Title>
                     <Card.Text>Rating: {nft.rated}</Card.Text>
                     <Card.Text>{nft.description}</Card.Text>
-                    <Link to={"/nfts/" + nft._id}>View Reviews</Link>
+                    {/* <Link to={"/nfts/" + nft._id}>View Reviews</Link> */}
                   </Card.Body>
                 </Card>
               </Col>

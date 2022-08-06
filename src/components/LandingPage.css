@@ -1,34 +1,80 @@
 .landingPage h1 {
-  margin: 200px 20px 50px;
+  margin: 150px 20px 50px;
   font-size: 5rem;
+}
+
+.landingPage {
   text-align: center;
 }
+
+/* .landingPage {
+  margin:0;
+  padding: 0 auto;
+  text-align: center;
+} */
 
 .landingPage h3 {
   margin: 50px 20px;
   font-size: 3rem;
-  text-align: center;
 }
 
 .landingPage h4 {
-  margin: 50px 20px;
+  margin: 30px 20px 10px;
   font-size: 2rem;
-  text-align: center;
 }
 
-.landingPage .moviesListCard {
-  width: 30rem;
+.landingPage .nftOfTheDayCard {
+  width: 28rem;
   position: relative;
   z-index: 1;
   margin: auto;
+  cursor: pointer;
+}
+
+.nftOfTheDayCard:hover .smallPoster {
+  transform: scale(1.2);
 }
 
 .landingPage .topLikedCard {
   width: 18rem;
   position: relative;
   z-index: 1;
+  cursor: pointer;
 }
 
 .topLikedCard:hover .smallPoster {
   transform: scale(1.2);
 }
+
+.landingPage .ct {
+  display: inline;
+  margin-right: 50px;
+}
+
+.landingPage .pr {
+  display: inline;
+  margin-left: 50px;
+  color: rgb(153, 255, 0);
+}
+
+.landingPage .topLikedPrice {
+  color: rgb(153, 255, 0);
+}
+
+.landingPage .bd {
+  /* height: 100px; */
+  text-align: center;
+}
+
+.landingPage .landingPageRow {
+  margin-bottom: 80px;
+}
+
+.landingPage .howToRow {
+  padding: 30px;
+  text-align: center;
+}
+
+/* .landingPage .movieRow {
+  margin: 0;
+} */

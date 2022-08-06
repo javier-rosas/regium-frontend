@@ -3,6 +3,8 @@
 }
 
 .card {
+  overflow: hidden;
+  border-radius: 5%;
   margin-top: 15px;
   background-color: rgb(43, 43, 43);
 }
@@ -11,6 +13,7 @@
   width: 18rem;
   position: relative;
   z-index: 1;
+  cursor: pointer;
 }
 
 .nftImageDiv {
