@@ -60,7 +60,7 @@ User backend functionality: Javier Rosas Ruiz
 
 ![Alt text](./pictures/users_dao_1.png?raw=true "Title")
 
-![Alt text](./pictures/users_dao_2.png?raw=true "Title")
+![Alt text](./pictures/user_dao_2.png?raw=true "Title")
 
 ![Alt text](./pictures/user_controller_1.png?raw=true "Title")
 
