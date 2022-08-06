@@ -2,6 +2,10 @@
   margin-top: 15px;
 }
 
+.App .topLikedPrice {
+  color: rgb(153, 255, 0);
+}
+
 .card {
   overflow: hidden;
   border-radius: 5%;
@@ -14,6 +18,7 @@
   position: relative;
   z-index: 1;
   cursor: pointer;
+  text-align: center;
 }
 
 .nftImageDiv {

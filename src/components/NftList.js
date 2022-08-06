@@ -188,9 +188,11 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
                   </div>
                   <Card.Body>
                     <Card.Title> {nft.name} </Card.Title>
-                    <Card.Text>Rating: {nft.rated}</Card.Text>
                     <Card.Text>{nft.description}</Card.Text>
-                    {/* <Link to={"/nfts/" + nft._id}>View Reviews</Link> */}
+                    <Card.Text>Genre: {nft.genre}</Card.Text>
+                    <Card.Text className="topLikedPrice">
+                      {nft.price + " ETH"}
+                    </Card.Text>
                   </Card.Body>
                 </Card>
               </Col>

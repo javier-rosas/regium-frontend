@@ -75,6 +75,10 @@
   text-align: center;
 }
 
+.landingPage .likesSpan {
+  color: rgb(205, 151, 255);
+}
+
 /* .landingPage .movieRow {
   margin: 0;
 } */

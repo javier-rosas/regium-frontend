@@ -122,7 +122,10 @@ const LandingPage = ({ user }) => {
                     <Card.Body>
                       <Card.Title> {nft.name} </Card.Title>
                       <Card.Text>{nft.description}</Card.Text>
-                      <Card.Text>Genre: {nft.genre}</Card.Text>
+                      <Card.Text>
+                        Liked <span className="likesSpan">{nft.likes}</span>{" "}
+                        times
+                      </Card.Text>
                       <Card.Text className="topLikedPrice">
                         {nft.price + " ETH"}
                       </Card.Text>
