@@ -44,20 +44,7 @@ function Nft({ user }) {
     getNft(params.id);
   }, [params.id]);
 
-  // const onDeleteReview = (review, index) => {
-  //   NftDataService.deleteReview(review)
-  //     .then((response) => {
-  //       setMovie((prevState) => {
-  //         prevState.reviews.splice(index, 1);
-  //         return {
-  //           ...prevState,
-  //         };
-  //       });
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // };
+
 
   return (
     <div>
@@ -89,6 +76,7 @@ function Nft({ user }) {
             </Card>
             <h2>Reviews</h2>
             <br></br>
+            <Button> Buy </Button>
             {/* {movie.reviews.map((review, index) => {
               return (
                 <div className="d-flex" key={index}>

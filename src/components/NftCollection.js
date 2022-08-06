@@ -48,13 +48,16 @@ const NftCollection = ({user}) => {
 
 
   const getNftIds = useCallback(() => {
-    UserDataService.getUserNfts(user.googleId).
-    then((response) => {
-      setNftIds(response.data)
-    })
-    .catch((e) => {
-      console.log(e)
-    })
+    if (user) {
+      UserDataService.getUserNfts(user.googleId).
+      then((response) => {
+        setNftIds(response.data)
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+    }
+    
   }, [user])
 
   
@@ -87,8 +90,10 @@ const NftCollection = ({user}) => {
                   <Card.Text>Rating: {nft.rated}</Card.Text>
                   <Card.Text>{nft.description}</Card.Text>
                  </Card.Body>
+                 <Button> Sell </Button>
               </Card>
             </Col>
+          
           )
         })} 
         </Row>

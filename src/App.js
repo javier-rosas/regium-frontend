@@ -147,7 +147,7 @@ function App() {
           />
           <Route exact path={"/collection"} element={<NftCollection user={user} />}/>
         </Routes>
-        <Footer />
+        <Footer /> 
       </div>
     </GoogleOAuthProvider>
   );
