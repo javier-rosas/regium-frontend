@@ -27,6 +27,7 @@ function Login({ setUser }) {
     updateUser(loginData)
     localStorage.setItem("login", JSON.stringify(loginData))  
     console.log("Logged in succesfully.")
+    
   }
 
   // on failure, just log the result

@@ -15,6 +15,7 @@ import React from "react";
 import FavoritesDataService from "./services/favorites";
 import Favorites from "./components/Favorites.js";
 import LandingPage from "./components/LandingPage.js";
+import NftCollection from "./components/NftCollection"
 
 import "./App.css";
 
@@ -101,7 +102,12 @@ function App() {
                   <Nav.Link as={Link} to={"/favorites"}>
                     Wishlist
                   </Nav.Link>
-                )}
+                 )}
+                 {user && (
+                  <Nav.Link as={Link} to={"/collection"}> 
+                    Collection 
+                  </Nav.Link>
+                 )}
               </Nav>
             </Navbar.Collapse>
             {user ? <Logout setUser={setUser} /> : <Login setUser={setUser} />}
@@ -139,6 +145,7 @@ function App() {
               />
             }
           />
+          <Route exact path={"/collection"} element={<NftCollection user={user} />}/>
         </Routes>
         <Footer />
       </div>
