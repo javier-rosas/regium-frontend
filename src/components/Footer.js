@@ -20,7 +20,8 @@ export default function App() {
               </MDBCol>
               <MDBCol md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4">
                 <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
-                <p>rosasruiz.j@northeastern.com</p>
+                <p>rosasruiz.j@northeastern.edu</p>
+                <p>sabharwal.d@northeastern.edu</p>
               </MDBCol>
             </MDBRow>
           </MDBContainer>
@@ -30,7 +31,7 @@ export default function App() {
           className="text-center p-4"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
         >
-          © 2021 Copyright: Uniq Labs
+          © 2022 Copyright: Uniq Labs
         </div>
       </MDBFooter>
     </div>
