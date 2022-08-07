@@ -3,6 +3,11 @@
   font-size: 5rem;
 }
 
+.landingPage h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
 .landingPage {
   text-align: center;
 }
@@ -31,19 +36,29 @@
   cursor: pointer;
 }
 
+.topLikedCard:hover {
+  background-color: rgb(43, 43, 43);
+}
+
 .nftOfTheDayCard:hover .smallPoster {
   transform: scale(1.2);
 }
 
 .landingPage .topLikedCard {
-  width: 18rem;
-  position: relative;
+  width: 25rem;
+  display: flex;
+  padding: 10px;
   z-index: 1;
   cursor: pointer;
+  /* border-radius: 2%; */
 }
 
 .topLikedCard:hover .smallPoster {
   transform: scale(1.2);
+}
+
+.topLikedCard .ethImg {
+  width: 20px;
 }
 
 .landingPage .ct {
@@ -59,6 +74,9 @@
 
 .landingPage .topLikedPrice {
   color: rgb(153, 255, 0);
+  font-size: 20px;
+  display: inline;
+  margin-left: 15px;
 }
 
 .landingPage .bd {
@@ -79,6 +97,11 @@
   /* line-height: 2; */
 }
 
+.topLikedImgDiv {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
 .landingPage .howToItem {
   flex: 1 1 0px;
   display: inline;
@@ -91,9 +114,52 @@
 }
 
 .landingPage .likesSpan {
-  color: rgb(205, 151, 255);
+  color: rgb(255, 63, 95);
+  margin-left: 15px;
+  font-size: 20px;
 }
 
 /* .landingPage .movieRow {
   margin: 0;
 } */
+
+.landingPage .topLikedBody {
+  display: inline;
+  margin: auto;
+}
+
+.landingPage .vsmallPoster {
+  display: inline;
+  width: 8rem;
+  border-radius: 50%;
+}
+
+.ethImg {
+  display: inline;
+  margin-left: 30px;
+  filter: drop-shadow(2px 4px 6px black);
+  z-index: 2;
+}
+
+.topLikedHeart {
+  fill: rgb(255, 63, 95);
+  width: 2em;
+  height: 2em;
+  filter: drop-shadow(2px 4px 6px black);
+  z-index: 2;
+}
+
+.info {
+  display: flex;
+}
+
+.landingPage .index {
+  font-size: 25px;
+
+  margin: auto;
+}
+
+.topLikedName {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}

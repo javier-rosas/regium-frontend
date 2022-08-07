@@ -7,6 +7,7 @@ import Image from "react-bootstrap/Image";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
+import { BsSuitHeartFill } from "react-icons/bs";
 
 import "./LandingPage.css";
 
@@ -105,16 +106,17 @@ const LandingPage = ({ user }) => {
           <h2>Most liked NFTs of all time</h2>
           <Row className="movieRow">
             {nfts &&
-              nfts.map((nft) => {
+              nfts.map((nft, index) => {
                 return (
                   <Col key={nft._id}>
-                    <Card
+                    <div
                       className="topLikedCard"
                       onClick={() => navigate("/nfts/" + nft._id)}
                     >
-                      <div className="nftImageDiv">
-                        <Card.Img
-                          className="smallPoster"
+                      <span className="index">{index + 1}</span>
+                      <div className="nftImageDiv topLikedImgDiv">
+                        <Image
+                          className="smallPoster vsmallPoster"
                           src={nft.imageLink}
                           onError={({ currentTarget }) => {
                             currentTarget.onerror = null;
@@ -122,18 +124,27 @@ const LandingPage = ({ user }) => {
                           }}
                         />
                       </div>
-                      <Card.Body>
-                        <Card.Title> {nft.name} </Card.Title>
-                        <Card.Text>{nft.description}</Card.Text>
-                        <Card.Text>
-                          Liked <span className="likesSpan">{nft.likes}</span>{" "}
-                          times
-                        </Card.Text>
-                        <Card.Text className="topLikedPrice">
-                          {nft.price + " ETH"}
-                        </Card.Text>
-                      </Card.Body>
-                    </Card>
+                      <div className="topLikedBody">
+                        <h5 className="topLikedName"> {nft.name} </h5>
+
+                        <div className="info">
+                          <BsSuitHeartFill className="topLikedHeart " />
+                          <span className="likesSpan">{nft.likes}</span>
+
+                          <Image
+                            className="ethImg "
+                            src="/images/eth-gold.svg"
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null;
+                              currentTarget.src = "/images/stand-in.jpeg";
+                            }}
+                          />
+                          <span className="topLikedPrice">
+                            {nft.price + " ETH"}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </Col>
                 );
               })}

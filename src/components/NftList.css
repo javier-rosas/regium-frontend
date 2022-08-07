@@ -39,7 +39,7 @@ div.poster {
   transition: 0.3s all ease-in-out;
 }
 
-.star {
+.heart {
   width: 32.5em;
   height: 4em;
   filter: drop-shadow(2px 4px 6px black);
@@ -50,10 +50,10 @@ div.poster {
   margin-left: -3%;
 }
 
-.starFill {
+.heartFill {
   fill: rgb(255, 63, 95);
 }
 
-.starEmpty {
+.heartEmpty {
   fill: white;
 }

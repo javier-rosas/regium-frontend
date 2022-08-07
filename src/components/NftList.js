@@ -161,7 +161,7 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
                   {user &&
                     (favorites.includes(nft._id) ? (
                       <BsSuitHeartFill
-                        className="star starFill"
+                        className="heart heartFill"
                         onClick={() => {
                           deleteFavorite(nft._id);
                           updateLikes(nft._id, false);
@@ -169,7 +169,7 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
                       />
                     ) : (
                       <BsSuitHeart
-                        className="star starEmpty"
+                        className="heart heartEmpty"
                         onClick={() => {
                           addFavorite(nft._id);
                           updateLikes(nft._id, true);
