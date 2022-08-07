@@ -71,8 +71,23 @@
 }
 
 .landingPage .howToRow {
-  padding: 30px;
-  text-align: center;
+  background-color: rgb(43, 43, 43);
+  list-style: none;
+  justify-content: center;
+  display: flex;
+  padding: 80px 100px;
+  /* line-height: 2; */
+}
+
+.landingPage .howToItem {
+  flex: 1 1 0px;
+  display: inline;
+  padding: 20px;
+  margin: 30px;
+  /* border: 2px;
+  border-radius: 2%;
+  border-color: white;
+  border-style: solid; */
 }
 
 .landingPage .likesSpan {

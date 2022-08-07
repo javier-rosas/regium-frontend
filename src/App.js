@@ -15,7 +15,7 @@ import React from "react";
 import FavoritesDataService from "./services/favorites";
 import Favorites from "./components/Favorites.js";
 import LandingPage from "./components/LandingPage.js";
-import NftCollection from "./components/NftCollection"
+import NftCollection from "./components/NftCollection";
 
 import "./App.css";
 
@@ -82,7 +82,7 @@ function App() {
   return (
     <GoogleOAuthProvider clientId={clientId}>
       <div className="App">
-        <Navbar bg="primary" expand="lg" sticky="top" variant="dark">
+        <Navbar bg="dark" expand="lg" sticky="top" variant="dark">
           <Container className="container-fluid">
             <Navbar.Brand className="brand" href="/">
               <img
@@ -102,12 +102,12 @@ function App() {
                   <Nav.Link as={Link} to={"/favorites"}>
                     Wishlist
                   </Nav.Link>
-                 )}
-                 {user && (
-                  <Nav.Link as={Link} to={"/collection"}> 
-                    Collection 
+                )}
+                {user && (
+                  <Nav.Link as={Link} to={"/collection"}>
+                    Collection
                   </Nav.Link>
-                 )}
+                )}
               </Nav>
             </Navbar.Collapse>
             {user ? <Logout setUser={setUser} /> : <Login setUser={setUser} />}
@@ -145,9 +145,13 @@ function App() {
               />
             }
           />
-          <Route exact path={"/collection"} element={<NftCollection user={user} />}/>
+          <Route
+            exact
+            path={"/collection"}
+            element={<NftCollection user={user} />}
+          />
         </Routes>
-        <Footer /> 
+        <Footer />
       </div>
     </GoogleOAuthProvider>
   );
