@@ -13,6 +13,11 @@
   background-color: rgb(43, 43, 43);
 }
 
+.Container {
+  display: flex;
+  min-height: 100vh;
+}
+
 .moviesListCard {
   width: 18rem;
   position: relative;

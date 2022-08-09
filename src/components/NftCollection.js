@@ -71,7 +71,12 @@ const NftCollection = ({user}) => {
   return (
     <Container className="Container">
       <Row className="movieRow">
-        {nfts.map((nft) => {
+        {nfts.length === 0 ? 
+        <div>
+          <h1> No NFTs in your collection </h1>
+        </div>
+        :
+        nfts.map((nft) => {
           return (
             <Col key={nft._id}>
               <Card className="moviesListCard">
@@ -93,7 +98,6 @@ const NftCollection = ({user}) => {
                  <Button> Sell </Button>
               </Card>
             </Col>
-          
           )
         })} 
         </Row>
