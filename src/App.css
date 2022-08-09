@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Nunito:wght@300&display=swap');
+
 .App {
   min-height: 100vh;
   /* padding-bottom: 100px; */
@@ -16,6 +18,46 @@ body {
 .text-to-right {
   direction: rtl;
   text-align: right;
+}
+
+.brand {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.ml-auto {
+  position: absolute;
+  right: 20%;
+}
+
+.uniq-text {
+  position: absolute;
+  font-family: 'Nunito', sans-serif;
+  left: 11%;
+  font-weight: bold;
+}
+
+.nfts-text {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+}
+
+.wishlist-text {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+}
+
+.collection-text {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+}
+
+.navbar {
+  position: absolute;
+  width: 100%;
+  height: 10%
 }
 
 .navbar-brand.brand {
@@ -40,6 +82,9 @@ body {
 } */
 
 img.moviesLogo {
-  height: 50px;
-  padding-right: 5px;
+  position: absolute;
+  left: 5%;
+  height: 80px;
+  margin-right: 20px;
+  margin-bottom: 5px;
 }

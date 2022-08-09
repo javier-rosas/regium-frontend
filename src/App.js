@@ -82,30 +82,30 @@ function App() {
   return (
     <GoogleOAuthProvider clientId={clientId}>
       <div className="App">
-        <Navbar bg="dark" expand="lg" sticky="top" variant="dark">
+        <Navbar className="navbar" bg="dark" expand="lg" sticky="top" variant="dark">
           <Container className="container-fluid">
             <Navbar.Brand className="brand" href="/">
               <img
-                src="/images/movie-logo.png"
+                src="/images/uniq-logo.png"
                 alt="movies logo"
                 className="moviesLogo"
               />
-              UNIQ
+              <h1 className="uniq-text">UNIQ</h1>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="ml-auto">
-                <Nav.Link as={Link} to={"/nfts"}>
+                <Nav.Link className="nfts-text" as={Link} to={"/nfts"}>
                   NFTs
                 </Nav.Link>
                 {user && (
-                  <Nav.Link as={Link} to={"/favorites"}>
+                  <Nav.Link className="wishlist-text" as={Link} to={"/favorites"}>
                     Wishlist
                   </Nav.Link>
                 )}
                 {user && (
-                  <Nav.Link as={Link} to={"/collection"}>
-                    Collection
+                  <Nav.Link className="collection-text" as={Link} to={"/collection"}>
+                    My Collection
                   </Nav.Link>
                 )}
               </Nav>
