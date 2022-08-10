@@ -55,7 +55,7 @@ const LandingPage = ({ user }) => {
           <Col>
             <h4>Featured NFT</h4>
             {loading ? 
-            <RevolvingDot/> 
+            <RevolvingDot className="nftOfTheDayCard"/> 
             :nftOfTheDay && (
               <Card
                 className="nftOfTheDayCard"

@@ -6,6 +6,12 @@
   color: rgb(153, 255, 0);
 }
 
+.revolving-dot {
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
 .card {
   overflow: hidden;
   border-radius: 5%;

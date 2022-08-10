@@ -156,7 +156,7 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
         </Form>
         <Row className="movieRow">
           {loading ? 
-          <RevolvingDot/> 
+          <RevolvingDot className="revolving-dot"/> 
           :
           nfts.map((nft) => {
             return (
