@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Nunito:wght@300&display=swap');
+
+
 .landingPage h1 {
   margin: 150px 20px 50px;
   font-size: 5rem;
@@ -29,7 +32,7 @@
 }
 
 .landingPage .nftOfTheDayCard {
-  width: 28rem;
+  width: 20rem;
   position: relative;
   z-index: 1;
   margin: auto;
@@ -93,7 +96,7 @@
   list-style: none;
   justify-content: center;
   display: flex;
-  padding: 80px 100px;
+  padding: 3em;
   /* line-height: 2; */
 }
 
