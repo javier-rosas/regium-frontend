@@ -43,9 +43,10 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
         setCurrentPage(response.data.page);
         setEntriesPerPage(response.data.entries_per_page);
         setInterval(() => {
+          setLoading(false)
           console.log("wait 1 second to show spinner")
-        }, 1000)
-        setLoading(false)
+        }, 1500)
+        
       })
       .catch((e) => {
         console.log(e);

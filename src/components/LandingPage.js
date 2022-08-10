@@ -38,9 +38,10 @@ const LandingPage = ({ user }) => {
       .then((response) => {
         setNftOfTheDay(response.data[0]);
         setInterval(() => {
+          setLoading(false)
           console.log("wait 1 second to show spinner")
-        }, 1000)
-        setLoading(false)
+        }, 1500)
+        
       })
       .catch((e) => {
         console.log(e);
