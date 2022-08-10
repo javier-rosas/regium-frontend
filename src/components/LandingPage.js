@@ -65,6 +65,7 @@ const LandingPage = ({ user }) => {
                 className="nftOfTheDayCard"
                 onClick={() => navigate("/nfts/" + nftOfTheDay._id)}
               >
+                <div className="nftImageDiv">
                 <Card.Img
                   className="smallPoster"
                   src={nftOfTheDay.imageLink}
@@ -73,6 +74,7 @@ const LandingPage = ({ user }) => {
                     currentTarget.src = "/images/stand-in.jpeg";
                   }}
                 />
+                </div>
                 <Card.Body className="bd">
                   <Card.Title className="ct"> {nftOfTheDay.name} </Card.Title>
                   {/* <Card.Text className="gen">Genre: {nftOfTheDay.genre}</Card.Text> */}

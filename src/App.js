@@ -16,6 +16,7 @@ import FavoritesDataService from "./services/favorites";
 import Favorites from "./components/Favorites.js";
 import LandingPage from "./components/LandingPage.js";
 import NftCollection from "./components/NftCollection";
+import Mint from "./components/Mint"
 
 import "./App.css";
 
@@ -99,14 +100,20 @@ function App() {
                   NFTs
                 </Nav.Link>
                 {user && (
+                  <>
                   <Nav.Link className="wishlist-text" as={Link} to={"/favorites"}>
                     Wishlist
                   </Nav.Link>
-                )}
-                {user && (
+                
                   <Nav.Link className="collection-text" as={Link} to={"/collection"}>
                     My Collection
                   </Nav.Link>
+
+                  <Nav.Link className="collection-text" as={Link} to={"/mint"}>
+                    Mint NFT
+                  </Nav.Link>
+
+                  </>
                 )}
               </Nav>
             </Navbar.Collapse>
@@ -150,7 +157,13 @@ function App() {
             path={"/collection"}
             element={<NftCollection user={user} />}
           />
+          <Route
+            exact 
+            path={"/mint"}
+            element={<Mint user={user} />}
+          />
         </Routes>
+        
         <Footer />
       </div>
     </GoogleOAuthProvider>

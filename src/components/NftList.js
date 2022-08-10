@@ -125,6 +125,7 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
   return (
     <div className="App">
       <Container className="main-container">
+      <div className="section">
         <Form>
           <Row>
             <Col>
@@ -158,9 +159,10 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
             </Col>
           </Row>
         </Form>
+        </div>
         <Row className="movieRow">
           {loading ? 
-          <RevolvingDot className="revolving-dot"/> 
+          <RevolvingDot className="nftImageDiv"/> 
           :
           nfts.map((nft) => {
             return (
