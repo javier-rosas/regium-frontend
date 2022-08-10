@@ -8,11 +8,14 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import { BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
+import {RevolvingDot} from 'react-loader-spinner';
+
 
 import "./NftList.css";
 
 function NftList({ user, favorites, addFavorite, deleteFavorite }) {
   const [nfts, setNfts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchName, setSearchName] = useState("");
   const [searchGenre, setSearchGenre] = useState("");
   const [genres, setGenres] = useState(["All Genres"]);
@@ -39,6 +42,7 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
         setNfts(response.data.nfts);
         setCurrentPage(response.data.page);
         setEntriesPerPage(response.data.entries_per_page);
+        setLoading(false)
       })
       .catch((e) => {
         console.log(e);
@@ -151,7 +155,10 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
           </Row>
         </Form>
         <Row className="movieRow">
-          {nfts.map((nft) => {
+          {loading ? 
+          <RevolvingDot/> 
+          :
+          nfts.map((nft) => {
             return (
               <Col key={nft._id}>
                 <Card

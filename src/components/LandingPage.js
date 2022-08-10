@@ -8,12 +8,15 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import { BsSuitHeartFill } from "react-icons/bs";
+import {RevolvingDot} from 'react-loader-spinner';
+
 
 import "./LandingPage.css";
 
 const LandingPage = ({ user }) => {
   const [nfts, setNfts] = useState([]);
   const [nftOfTheDay, setNftOfTheDay] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -34,6 +37,7 @@ const LandingPage = ({ user }) => {
     NftDataService.getRandomNfts(1)
       .then((response) => {
         setNftOfTheDay(response.data[0]);
+        setLoading(false)
       })
       .catch((e) => {
         console.log(e);
@@ -50,7 +54,9 @@ const LandingPage = ({ user }) => {
           </Col>
           <Col>
             <h4>Featured NFT</h4>
-            {nftOfTheDay && (
+            {loading ? 
+            <RevolvingDot/> 
+            :nftOfTheDay && (
               <Card
                 className="nftOfTheDayCard"
                 onClick={() => navigate("/nfts/" + nftOfTheDay._id)}
