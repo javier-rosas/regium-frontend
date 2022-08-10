@@ -37,6 +37,9 @@ const LandingPage = ({ user }) => {
     NftDataService.getRandomNfts(1)
       .then((response) => {
         setNftOfTheDay(response.data[0]);
+        setInterval(() => {
+          console.log("wait 1 second to show spinner")
+        }, 1000)
         setLoading(false)
       })
       .catch((e) => {
@@ -55,7 +58,7 @@ const LandingPage = ({ user }) => {
           <Col>
             <h4>Featured NFT</h4>
             {loading ? 
-            <RevolvingDot className="nftOfTheDayCard"/> 
+            <RevolvingDot className="nftImageDiv"/> 
             :nftOfTheDay && (
               <Card
                 className="nftOfTheDayCard"
