@@ -93,7 +93,9 @@ https://github.ccs.neu.edu/NEU-CS5610-SU22/Distributed-UniqFrontend
 This code is incomplete right now but will be finalized before iteration 3.
 
 In this iteration we have made the following progress to the Distributed Uniq repository:
+
 <img width="579" alt="nftmo" src="https://media.github.ccs.neu.edu/user/10195/files/8b761052-4c9a-466e-872c-108bbc2d561d">
+
 This class stores the code for an individual nft
 
 <img width="633" alt="nft_card" src="https://media.github.ccs.neu.edu/user/10195/files/77e9dcc0-e9c5-48ff-8c0c-0db35de7fd71">
@@ -112,7 +114,7 @@ The above file shows the code for how we can mint a new nft
 ## Contributions
 
 Dhruv Sabharwal: Landing page styling, creating and setting up the new github Distributed Uniq repository, connecting the blockchain backend to the react frontend.
-Javier Rosas Ruiz: NFT card styling and functionality, Mint.jsx file, Nft.mo file
+Javier Rosas Ruiz: NFT card styling and functionality, Mint.jsx file, Nft.mo file, and optimized the web app for mobile using bootstrapped components and css.
 
 ## Plan for iteration 3
 We aim to finish the web application with the Buy, Sell and Mint funcionality fully working on the Internet Computer Blockchain.
