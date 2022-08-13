@@ -109,11 +109,11 @@ The above image shows the structure of the new Distributed Uniq repository
 The above file shows the code for how we can mint a new nft
 
 
-## Contributions:
+## Contributions
 
 Dhruv Sabharwal: Landing page styling, creating and setting up the new github Distributed Uniq repository, connecting the blockchain backend to the react frontend.
 Javier Rosas Ruiz: NFT card styling and functionality, Mint.jsx file, Nft.mo file
 
-## Plan for iteration 3:
+## Plan for iteration 3
 We aim to finish the web application with the Buy, Sell and Mint funcionality fully working on the Internet Computer Blockchain.
 
