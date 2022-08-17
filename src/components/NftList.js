@@ -45,7 +45,7 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
         setInterval(() => {
           setLoading(false)
           console.log("wait 1 second to show spinner")
-        }, 1500)
+        }, 750)
         
       })
       .catch((e) => {
@@ -162,7 +162,9 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
         </div>
         <Row className="movieRow">
           {loading ? 
-          <RevolvingDot className="nftImageDiv"/> 
+          <Card className="spinner">
+          <RevolvingDot /> 
+          </Card>
           :
           nfts.map((nft) => {
             return (

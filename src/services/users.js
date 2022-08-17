@@ -8,7 +8,6 @@ class UserDataService {
       )
   }
 
-  
   getUserNfts(userId) {
     return axios.get(
       `${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts/user/${userId}`

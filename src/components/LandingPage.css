@@ -21,6 +21,23 @@
   text-align: center;
 } */
 
+
+.spinner {
+  margin: auto;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.nftOfTheDayCard {
+  margin: auto;
+
+}
+
+
 .landingPage h3 {
   margin: 50px 20px;
   font-size: 3rem;

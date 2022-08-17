@@ -40,7 +40,7 @@ const LandingPage = ({ user }) => {
         setInterval(() => {
           setLoading(false)
           console.log("wait 1 second to show spinner")
-        }, 1500)
+        }, 750)
         
       })
       .catch((e) => {
@@ -59,7 +59,9 @@ const LandingPage = ({ user }) => {
           <Col>
             <h4>Featured NFT</h4>
             {loading ? 
-            <RevolvingDot className="spinner" /> 
+            <Card className="spinner">
+              <RevolvingDot /> 
+            </Card>
             :nftOfTheDay && (
               <Card
                 className="nftOfTheDayCard"
