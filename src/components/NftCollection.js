@@ -1,5 +1,4 @@
 import React from 'react'
-import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
 import Card from "react-bootstrap/Card"
@@ -49,9 +48,9 @@ const NftCollection = ({user}) => {
 
   const getNftIds = useCallback(() => {
     if (user) {
-      UserDataService.getUserNfts(user.googleId).
-      then((response) => {
-        setNftIds(response.data)
+      UserDataService.getUser(user.googleId)
+      .then((response) => {
+        setNftIds(response.data[0].nfts_owned)
       })
       .catch((e) => {
         console.log(e)

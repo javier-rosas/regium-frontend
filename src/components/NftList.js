@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import NftDataService from "../services/nfts";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -42,7 +42,7 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
         setNfts(response.data.nfts);
         setCurrentPage(response.data.page);
         setEntriesPerPage(response.data.entries_per_page);
-        setInterval(() => {
+        setTimeout(() => {
           setLoading(false)
           console.log("wait 1 second to show spinner")
         }, 750)

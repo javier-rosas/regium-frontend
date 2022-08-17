@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import NftDataService from "../services/nfts";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/Button";
 import { BsSuitHeartFill } from "react-icons/bs";
 import {RevolvingDot} from 'react-loader-spinner';
 
@@ -37,7 +36,7 @@ const LandingPage = ({ user }) => {
     NftDataService.getRandomNfts(1)
       .then((response) => {
         setNftOfTheDay(response.data[0]);
-        setInterval(() => {
+        setTimeout(() => {
           setLoading(false)
           console.log("wait 1 second to show spinner")
         }, 750)

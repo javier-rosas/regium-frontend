@@ -24,9 +24,10 @@ const Mint = ({ user }) => {
   }
 
   const onSubmit = (data) => {
-    console.log(data);
+    data.price = parseInt(data.price)
     create_blob(data.image, function (blob_string) {
       data.image = blob_string;
+      data.googleId = user.googleId
       NftDataService.mintNft(data)
         .then((response) => {
           navigate("/nfts");
