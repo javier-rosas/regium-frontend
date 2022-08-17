@@ -1,10 +1,72 @@
-.main-container{
+.mint-page {
+  padding: 80px 40px;
+}
+
+.mint-page .main-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 }
 
-.mb-3 {
+.mint-page form {
+  max-width: 500px;
+  margin: 10 auto;
+}
 
+.mint-page .heading1 {
+  margin-bottom: 30px;
+}
+
+.mint-page .heading2 {
+  margin-bottom: 50px;
+}
+
+.mint-page .error {
+  font-size: 20px;
+  color: #bf1650;
+}
+
+.mint-page .error::before {
+  display: inline;
+  content: "⚠ ";
+}
+
+.mint-page input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid white;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.mint-page label {
+  line-height: 2;
+  text-align: left;
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 25px;
+  color: white;
+  font-size: 20px;
+}
+
+.mint-page input[type="submit"] {
+  background: #ec5990;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  margin-top: 50px;
+  padding: 16px;
+  font-size: 20px;
+  letter-spacing: 10px;
+}
+
+.mint-page input[type="submit"]:hover {
+  background: #bf1650;
+}
+
+.mint-page hr {
+  margin-top: 30px;
 }

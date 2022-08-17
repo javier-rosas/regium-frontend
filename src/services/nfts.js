@@ -48,9 +48,12 @@ class NftDataService {
     );
   }
 
-  // createReview(data) {
-  //     return axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts/review`, data)
-  // }
+  mintNft(data) {
+    return axios.post(
+      `${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts/mint`,
+      data
+    );
+  }
 
   // updateReview(data) {
   //     return axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts/review`, data)
