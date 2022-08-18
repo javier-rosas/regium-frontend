@@ -42,7 +42,6 @@ function Nft({ user, setUser }) {
     if (user && user.googleId) {
       UserDataService.getUser(user.googleId)
       .then((response) => {
-        console.log("REPONSEEEE", response)
         localStorage.setItem("login", JSON.stringify(response.data)) 
         setUser(response.data)
       })
@@ -52,6 +51,7 @@ function Nft({ user, setUser }) {
     }
   }, [])
 
+  
 
   const sellNft = (nftId, data) => {
     if (nftId && data) {
@@ -182,9 +182,9 @@ function Nft({ user, setUser }) {
                 )}
                 <input type="submit" value="Sell"/>
               </form>
-              ) : <Button className="buyBtn" onClick={() => {
-                user && user.googleId && nft && nft.id && buyNft(nft.id, user.googleId)
-              }}> Buy </Button>
+              ) : (<Button className="buyBtn" onClick={() => {
+                user && user.googleId && nft && nft.id && nft.upForSale && buyNft(nft.id, user.googleId)
+              }}> Buy </Button>)
             }
           </Col>
         </Row>
