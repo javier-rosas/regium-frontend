@@ -40,43 +40,21 @@ function App() {
     let loginData = JSON.parse(localStorage.getItem("login"));
     console.log("loginData in app Js", loginData)
     if (loginData) {
-      let loginExp = loginData.exp;
-      let now = Date.now() / 1000000000000;
-      if (now < loginExp) {
-        setUser(loginData);
-      } else {
-        // Expired
-        console.log("expired in App.js")
-        localStorage.setItem("login", null);
-      }
+      setUser(loginData);
     }
   }, []);
 
-  // const getUser = useCallback((user) => {
-  //   if (user) {
-  //     UserDataService.getUser(user.googleId)
-  //     .then((response) => {
-  //       setUser(response)
-        
-  //     })
-  //     .catch((e) => {
-  //       console.log(e)
-  //     })
-  //   }
-  // }, [setUser])
-
-  // useEffect(() => {
-  //   getUser()
-  // }, [])
 
   const retrieveFavorites = useCallback((user) => {
-    FavoritesDataService.getAllFavorites(user.googleId)
+    if (user) {
+      FavoritesDataService.getAllFavorites(user.googleId)
       .then((response) => {
         setFavorites(response.data.favorites);
       })
       .catch((e) => {
         console.log(e);
       });
+    }
   }, []);
 
   useEffect(() => {
@@ -133,10 +111,7 @@ function App() {
                   <Nav.Link className="collection-text" as={Link} to={"/mint"}>
                     Mint NFT
                   </Nav.Link>
-                  
-                  <Nav.Link className="balance" as={Link} to={"/mint"}>
-                  {user.balance} ETH
-                  </Nav.Link>
+            
                   </>
                 )}
               </Nav>

@@ -24,7 +24,7 @@ function Nft({ user, setUser }) {
   const [nft, setNft] = useState({
     id: null,
     name: "",
-    // rated: "",
+    price: "",
     owner : "",
     reviews: [],
     description: "",
@@ -49,43 +49,49 @@ function Nft({ user, setUser }) {
         console.log(e)
       })
     }
-  }, [setUser])
+  }, [])
 
 
   const sellNft = (nftId, data) => {
-    NftDataService.sellNft({
-      nftId : nftId, 
-      price: parseFloat(data.price)
-    })
-    .then(() => {
-      setIsShowingConfetti(true)
-      setTimeout(() => {
-        setIsShowingConfetti(false)
-      }, 4000)
-    })
-    .catch((e) => {
-      console.log(e)
-    })
+    if (nftId && data) {
+      NftDataService.sellNft({
+        nftId : nftId, 
+        price: parseFloat(data.price)
+      })
+      .then(() => {
+        setIsShowingConfetti(true)
+        setTimeout(() => {
+          setIsShowingConfetti(false)
+        }, 4000)
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+    }
   }
 
   const buyNft = (nftId, userId) => {
     console.log("userid in Nft js", nftId)
-    NftDataService.buyNft(
-      {
-        nftId: nftId, 
-        userId: userId
+    if (nftId && userId){
+      NftDataService.buyNft(
+        {
+          nftId: nftId, 
+          userId: userId
+        })
+      .then((res) => {
+        console.log("res in buyNft in Nft js", res)
+  
+        getUser(userId)
+        setIsShowingConfetti(true)
+        setTimeout(() => {
+          setIsShowingConfetti(false)
+        }, 4000)
+  
       })
-    .then((res) => {
-      getUser(userId)
-      setIsShowingConfetti(true)
-      setTimeout(() => {
-        setIsShowingConfetti(false)
-      }, 4000)
-
-    })
-    .catch((e) => {
-      console.log(e)
-    })
+      .catch((e) => {
+        console.log(e)
+      })
+    }
   }
 
   useEffect(() => {
@@ -95,7 +101,7 @@ function Nft({ user, setUser }) {
           let obj = {
             id: id,
             name: response.data.name,
-            // rated: response.data.rated,
+            price: response.data.price,
             reviews: response.data.reviews,
             imageLink: response.data.imageLink,
             description: response.data.description,
@@ -111,7 +117,7 @@ function Nft({ user, setUser }) {
   }, [params.id]);
 
   
-
+  console.log("nft in Nft js", nft)
   return (
     <div>
       <Container>
@@ -143,12 +149,14 @@ function Nft({ user, setUser }) {
               <Card.Header as="h5"> {nft.name} </Card.Header>
               <Card.Body>
                 <Card.Text>{nft.description}</Card.Text>
+                <Card.Text> Price: {nft.price} ETH </Card.Text>
+                <Card.Text> Balance: { user && user.balance} ETH  </Card.Text>
               </Card.Body>
             </Card>
             <br></br>
             <br></br>
             {
-              user &&
+              user && nft &&
               nft.owner === user.googleId ? (
                 <form onSubmit={handleSubmit((data, e) => {
                   try {
@@ -170,7 +178,9 @@ function Nft({ user, setUser }) {
                 )}
                 <input type="submit" value="Sell"/>
               </form>
-              ) : <Button className="buyBtn" onClick={() => buyNft(nft.id, user.googleId)}> Buy </Button>
+              ) : <Button className="buyBtn" onClick={() => {
+                user && nft && buyNft(nft.id, user.googleId)
+              }}> Buy </Button>
             }
           </Col>
         </Row>
