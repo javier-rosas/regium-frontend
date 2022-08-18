@@ -117,7 +117,7 @@ function App() {
                 )}
               </Nav>
             </Navbar.Collapse>
-            {user ? <Logout setUser={setUser} /> : <Login setUser={setUser} />}
+            {user ? <Logout setUser={setUser} /> : <Login setUser={setUser} user={user} />}
           </Container>
         </Navbar>
 

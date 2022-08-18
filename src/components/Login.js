@@ -8,13 +8,18 @@ const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID
 
 function Login({ setUser }) {
 
-  //Insert or update user in database by calling UserDataService api
-  const updateUser = useCallback((userData) => {
-    UserDataService.updateUser(userData)
-    .catch((e) => {
-      console.log(e)
-    })
+
+  const getUser = useCallback( async (googleId, loginData) => {
+    try {
+      const user = await UserDataService.getUser(googleId)
+      return user.data
+    } catch(e) {
+      //return {...loginData, balance : 10}
+      return e
+    }
   }, [])
+
+  
 
   // on succesful login 
   const onSuccess = (res) => {
@@ -23,9 +28,22 @@ function Login({ setUser }) {
       googleId: tokenData.sub,
       ...tokenData
     }
+
+    getUser(loginData.googleId).then((res) => {
+      if (Array.isArray(res) && res.length === 0) {
+        console.log("jere")
+        loginData.balance = 10 
+        UserDataService.updateUser(loginData)
+        .catch((e) => {
+          console.log(e)
+        })
+      }
+    })
+
+    console.log("loginData", loginData)
     setUser(loginData)
-    updateUser(loginData)
-    localStorage.setItem("login", JSON.stringify(loginData))  
+    localStorage.setItem("login", JSON.stringify(loginData)) 
+     
     console.log("Logged in succesfully.")
     
   }
@@ -34,7 +52,7 @@ function Login({ setUser }) {
   const onFailure = (res) => {
     console.log(`Login failed. Response: ${res}`)
   }
-
+  
   // JSX
   return (
     <div> 
