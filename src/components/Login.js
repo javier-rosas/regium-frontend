@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useCallback } from "react";
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode  from 'jwt-decode';
@@ -6,7 +6,7 @@ import UserDataService from "../services/users"
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID
 
-function Login({ setUser }) {
+function Login({ user, setUser }) {
 
 
   const getUser = useCallback( async (googleId, loginData) => {
@@ -19,6 +19,7 @@ function Login({ setUser }) {
   }, [])
 
   
+  
 
   // on succesful login 
   const onSuccess = (res) => {
@@ -30,20 +31,22 @@ function Login({ setUser }) {
 
     getUser(loginData.googleId).then((res) => {
       if (Array.isArray(res) && res.length === 0) {
-        console.log("jere")
         loginData.balance = 10 
+        localStorage.setItem("login", JSON.stringify(loginData)) 
         UserDataService.updateUser(loginData)
         .catch((e) => {
           console.log(e)
         })
         setUser(loginData)
+      } else {
+        console.log("res", res[0])
+        setUser(res[0])
+        localStorage.setItem("login", res[0]) 
       }
+      
+      
     })
-
-    console.log("loginData", loginData)
     
-    localStorage.setItem("login", JSON.stringify(loginData)) 
-     
     console.log("Logged in succesfully.")
     
   }
