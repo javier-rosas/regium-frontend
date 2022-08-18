@@ -74,7 +74,7 @@ function App() {
     FavoritesDataService.updateFavorites(data).catch((e) => {
       console.log(e);
     });
-  }, [favorites, user.googleId]);
+  }, [favorites, user]);
 
   useEffect(() => {
     if (user) {

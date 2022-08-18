@@ -118,7 +118,7 @@ function Nft({ user }) {
                 )}
                 <input type="submit" value="Sell"/>
               </form>
-              ) : <Button> Buy </Button>
+              ) : <Button className="sellBtn"> Buy </Button>
             }
           </Col>
         </Row>

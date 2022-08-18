@@ -13,3 +13,60 @@ p.review {
 .bigPicture {
   float: right;
 }
+
+input[type="submit"] {
+  background:  rgb(153, 255, 0);
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10%;
+
+  padding: 10px;
+  font-size: 20px;
+  letter-spacing: 10px;
+}
+
+input[type="submit"]:hover {
+  background: #bf1650;
+}
+
+.error {
+  font-size: 20px;
+  color: #bf1650;
+}
+
+.error::before {
+  display: inline;
+  content: "⚠ ";
+}
+
+.moviesListCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid white;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.sellBtn {
+  background: blue;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10%;
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+  letter-spacing: 10px;
+}
