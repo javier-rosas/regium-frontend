@@ -79,7 +79,7 @@ function App() {
       updateFavorites();
     }
   }, [favorites]);
-
+  console.log(user)
   return (
     <GoogleOAuthProvider clientId={clientId}>
       <div className="App">
@@ -112,7 +112,9 @@ function App() {
                   <Nav.Link className="collection-text" as={Link} to={"/mint"}>
                     Mint NFT
                   </Nav.Link>
-
+                  <Nav.Link className="collection-text" as={Link} to={"/mint"}>
+                  ${user.balance}
+                  </Nav.Link>
                   </>
                 )}
               </Nav>

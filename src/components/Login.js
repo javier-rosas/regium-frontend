@@ -14,7 +14,6 @@ function Login({ setUser }) {
       const user = await UserDataService.getUser(googleId)
       return user.data
     } catch(e) {
-      //return {...loginData, balance : 10}
       return e
     }
   }, [])
@@ -37,11 +36,12 @@ function Login({ setUser }) {
         .catch((e) => {
           console.log(e)
         })
+        setUser(loginData)
       }
     })
 
     console.log("loginData", loginData)
-    setUser(loginData)
+    
     localStorage.setItem("login", JSON.stringify(loginData)) 
      
     console.log("Logged in succesfully.")

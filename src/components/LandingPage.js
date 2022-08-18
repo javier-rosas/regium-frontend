@@ -39,7 +39,7 @@ const LandingPage = ({ user }) => {
         setTimeout(() => {
           setLoading(false)
           console.log("wait 1 second to show spinner")
-        }, 750)
+        }, 1000)
         
       })
       .catch((e) => {
