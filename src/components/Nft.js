@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import NftDataService from "../services/nfts";
 import { useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
@@ -8,11 +8,17 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import { useForm } from "react-hook-form";
+import {useWindowSize} from '@react-hook/window-size'
+import Confetti from 'react-confetti'
 
 
 import "./Nft.css";
 
 function Nft({ user }) {
+
+  const { width, height } = useWindowSize()
+  const [isShowingConfetti, setIsShowingConfetti] = useState(false)
+  const [showText, setShowText] = useState("")
 
   let params = useParams();
 
@@ -33,30 +39,29 @@ function Nft({ user }) {
     } = useForm();
 
   
-  useEffect(() => {
-    const getNft = (id) => {
-      NftDataService.find(id, "id")
-        .then((response) => {
-          let obj = {
-            id: id,
-            name: response.data.name,
-            // rated: response.data.rated,
-            owner: response.data.owner,
-            reviews: response.data.reviews,
-            imageLink: response.data.imageLink,
-            description: response.data.description,
-          };
+  const getNft = useCallback( (id) => {
+    NftDataService.find(id, "id")
+      .then((response) => {
+        let obj = {
+          id: id,
+          name: response.data.name,
+          // rated: response.data.rated,
+          owner: response.data.owner,
+          reviews: response.data.reviews,
+          imageLink: response.data.imageLink,
+          description: response.data.description,
+        };
+        // might cause bugs
+        setNft(obj);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, [])
 
-          // might cause bugs
-          setNft(obj);
-          
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    };
+  useEffect(() => {
     getNft(params.id);
-  }, [params.id]);
+  }, [params.id, nft, getNft]);
 
 
   const sellNft = (nftId, data) => {
@@ -64,14 +69,51 @@ function Nft({ user }) {
       nftId : nftId, 
       price: parseFloat(data.price)
     })
+    .then(() => {
+      setIsShowingConfetti(true)
+      setTimeout(() => {
+        setIsShowingConfetti(false)
+      }, 4000)
+    })
     .catch((e) => {
       console.log(e)
     })
   }
 
+  const buyNft = (nftId, userId) => {
+    NftDataService.buyNft(
+      {
+        nftId: nftId, 
+        userId: userId
+      })
+    .then((res) => {
+      getNft(nftId)
+      console.log("res Nft.js", res)
+      setIsShowingConfetti(true)
+      setTimeout(() => {
+        setIsShowingConfetti(false)
+      }, 4000)
+
+    })
+    .catch((e) => {
+      console.log(e)
+    })
+  }
+
+  
+
   return (
     <div>
       <Container>
+        {
+          isShowingConfetti && (
+          <Confetti
+            width={width}
+            height={height}
+            run={true}/>
+          )
+        }
+        
         <Row>
           <Col>
             <div className="poster">
@@ -118,7 +160,7 @@ function Nft({ user }) {
                 )}
                 <input type="submit" value="Sell"/>
               </form>
-              ) : <Button className="sellBtn"> Buy </Button>
+              ) : <Button className="buyBtn" onClick={() => buyNft(nft.id, user.googleId)}> Buy </Button>
             }
           </Col>
         </Row>

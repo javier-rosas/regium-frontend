@@ -62,13 +62,13 @@ class NftDataService {
     );
   }
 
-  // updateReview(data) {
-  //     return axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts/review`, data)
-  // }
+  buyNft(data) {
+    return axios.put(
+      `${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts/buy`,
+      data
+    );
+  }
 
-  // deleteReview(data) {
-  //     return axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts/review`, { data: data })
-  // }
 }
 
 export default new NftDataService();
