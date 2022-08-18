@@ -65,7 +65,7 @@ const NftCollection = ({user}) => {
   
   useEffect(() => {
     getNftIds()
-  }, [getNftIds])
+  }, [])
 
 
   return (

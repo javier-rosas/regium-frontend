@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import Nft from "./components/Nft";
 import React from "react";
 import FavoritesDataService from "./services/favorites";
+import UserDataService from "./services/users"
 import Favorites from "./components/Favorites.js";
 import LandingPage from "./components/LandingPage.js";
 import NftCollection from "./components/NftCollection";
@@ -34,6 +35,7 @@ function App() {
     setFavorites(favorites.filter((f) => f !== movieId));
   };
 
+
   useEffect(() => {
     let loginData = JSON.parse(localStorage.getItem("login"));
     console.log("loginData in app Js", loginData)
@@ -49,6 +51,23 @@ function App() {
       }
     }
   }, []);
+
+  // const getUser = useCallback((user) => {
+  //   if (user) {
+  //     UserDataService.getUser(user.googleId)
+  //     .then((response) => {
+  //       setUser(response)
+        
+  //     })
+  //     .catch((e) => {
+  //       console.log(e)
+  //     })
+  //   }
+  // }, [setUser])
+
+  // useEffect(() => {
+  //   getUser()
+  // }, [])
 
   const retrieveFavorites = useCallback((user) => {
     FavoritesDataService.getAllFavorites(user.googleId)
@@ -140,12 +159,7 @@ function App() {
               />
             }
           />
-          <Route exact path={"/nfts/:id/"} element={<Nft user={user} />} />
-          {/* <Route
-            exact
-            path={"/nfts/:id/review"}
-            element={<AddReview user={user} />}
-          /> */}
+          <Route exact path={"/nfts/:id/"} element={<Nft user={user} setUser={setUser}/>} />
           <Route
             exact
             path={"/favorites"}

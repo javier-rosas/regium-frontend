@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import NftDataService from "../services/nfts";
+import UserDataService from "../services/users"
 import { useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
@@ -11,14 +12,12 @@ import { useForm } from "react-hook-form";
 import {useWindowSize} from '@react-hook/window-size'
 import Confetti from 'react-confetti'
 
-
 import "./Nft.css";
 
-function Nft({ user }) {
+function Nft({ user, setUser }) {
 
   const { width, height } = useWindowSize()
   const [isShowingConfetti, setIsShowingConfetti] = useState(false)
-  const [showText, setShowText] = useState("")
 
   let params = useParams();
 
@@ -38,30 +37,19 @@ function Nft({ user }) {
     formState: { errors },
     } = useForm();
 
-  
-  const getNft = useCallback( (id) => {
-    NftDataService.find(id, "id")
+
+  const getUser = useCallback((user) => {
+    if (user) {
+      UserDataService.getUser(user.googleId)
       .then((response) => {
-        let obj = {
-          id: id,
-          name: response.data.name,
-          // rated: response.data.rated,
-          owner: response.data.owner,
-          reviews: response.data.reviews,
-          imageLink: response.data.imageLink,
-          description: response.data.description,
-        };
-        // might cause bugs
-        setNft(obj);
+        localStorage.setItem("login", JSON.stringify(response)) 
+        setUser(response)
       })
       .catch((e) => {
-        console.log(e);
-      });
-  }, [])
-
-  useEffect(() => {
-    getNft(params.id);
-  }, [params.id, nft, getNft]);
+        console.log(e)
+      })
+    }
+  }, [setUser])
 
 
   const sellNft = (nftId, data) => {
@@ -81,14 +69,14 @@ function Nft({ user }) {
   }
 
   const buyNft = (nftId, userId) => {
+    console.log("userid in Nft js", nftId)
     NftDataService.buyNft(
       {
         nftId: nftId, 
         userId: userId
       })
     .then((res) => {
-      getNft(nftId)
-      console.log("res Nft.js", res)
+      getUser(userId)
       setIsShowingConfetti(true)
       setTimeout(() => {
         setIsShowingConfetti(false)
@@ -99,6 +87,28 @@ function Nft({ user }) {
       console.log(e)
     })
   }
+
+  useEffect(() => {
+    const getNft = (id) => {
+      NftDataService.find(id, "id")
+        .then((response) => {
+          let obj = {
+            id: id,
+            name: response.data.name,
+            // rated: response.data.rated,
+            reviews: response.data.reviews,
+            imageLink: response.data.imageLink,
+            description: response.data.description,
+          };
+          // might cause bugs
+          setNft(obj);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    };
+    getNft(params.id);
+  }, [params.id]);
 
   
 
