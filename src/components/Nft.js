@@ -37,7 +37,7 @@ function Nft({ user, setUser }) {
     formState: { errors },
     } = useForm();
 
-
+  
   const getUser = useCallback((user) => {
     if (user) {
       UserDataService.getUser(user.googleId)
@@ -49,6 +49,10 @@ function Nft({ user, setUser }) {
         console.log(e)
       })
     }
+  }, [])
+
+  useEffect(() => {
+    if (user) getUser(user.googleId)
   }, [])
 
 
