@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { useCallback } from "react";
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode  from 'jwt-decode';
@@ -19,8 +19,6 @@ function Login({ user, setUser }) {
   }, [])
 
   
-  
-
   // on succesful login 
   const onSuccess = (res) => {
     var tokenData = jwt_decode(res.credential)
@@ -29,21 +27,26 @@ function Login({ user, setUser }) {
       ...tokenData
     }
 
-    getUser(loginData.googleId).then((res) => {
+    getUser(loginData.googleId)
+    .then((res) => {
       if (Array.isArray(res) && res.length === 0) {
         loginData.balance = 10 
         localStorage.setItem("login", JSON.stringify(loginData)) 
+        console.log("loginData set in login js", loginData)
         UserDataService.updateUser(loginData)
         .catch((e) => {
           console.log(e)
         })
         setUser(loginData)
       } else {
-        console.log("res", res[0])
         setUser(res[0])
-        localStorage.setItem("login", JSON.stringify(res[0])) 
+        if (res[0]) {
+          console.log("res[0] set in login js", res[0])
+          localStorage.setItem("login", JSON.stringify(res[0])) 
+        }
       }
-    }).catch((e) => {
+    })
+    .catch((e) => {
       console.log(e)
     })
     

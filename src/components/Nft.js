@@ -1,27 +1,38 @@
 import React, { useState, useEffect } from "react";
 import NftDataService from "../services/nfts";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
-import moment from "moment";
+import { useForm } from "react-hook-form";
+
 
 import "./Nft.css";
 
 function Nft({ user }) {
+
   let params = useParams();
+
   const [nft, setNft] = useState({
     id: null,
     name: "",
     // rated: "",
+    owner : "",
     reviews: [],
     description: "",
     imageLink: "",
   });
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    } = useForm();
+
+  
   useEffect(() => {
     const getNft = (id) => {
       NftDataService.find(id, "id")
@@ -30,12 +41,15 @@ function Nft({ user }) {
             id: id,
             name: response.data.name,
             // rated: response.data.rated,
+            owner: response.data.owner,
             reviews: response.data.reviews,
             imageLink: response.data.imageLink,
             description: response.data.description,
           };
+
           // might cause bugs
           setNft(obj);
+          
         })
         .catch((e) => {
           console.log(e);
@@ -45,6 +59,15 @@ function Nft({ user }) {
   }, [params.id]);
 
 
+  const sellNft = (nftId, data) => {
+    NftDataService.sellNft({
+      nftId : nftId, 
+      price: parseFloat(data.price)
+    })
+    .catch((e) => {
+      console.log(e)
+    })
+  }
 
   return (
     <div>
@@ -57,7 +80,6 @@ function Nft({ user }) {
                 src={nft.imageLink}
                 onError={(e) => {
                   e.target.onerror = null;
-                  console.log(e);
                   e.target.src = "/images/stand-in.jpeg";
                 }}
                 fluid
@@ -69,52 +91,35 @@ function Nft({ user }) {
               <Card.Header as="h5"> {nft.name} </Card.Header>
               <Card.Body>
                 <Card.Text>{nft.description}</Card.Text>
-                {/* {user && (
-                  <Link to={`/movies/${params.id}/review`}>Add Review</Link>
-                )} */}
               </Card.Body>
             </Card>
-            <h2>Reviews</h2>
             <br></br>
-            <Button> Buy </Button>
-            {/* {movie.reviews.map((review, index) => {
-              return (
-                <div className="d-flex" key={index}>
-                  <div className="flex-shrink-0 reviewsText">
-                    <h5>
-                      {" "}
-                      {review.name + " reviewed on "}{" "}
-                      {moment(review.date).format("Do MMMM YYYY")}{" "}
-                    </h5>
-                    <p className="review"> {review.review} </p>
-                    {user && user.googleId === review.user_id && (
-                      <Row>
-                        <Col>
-                          <Link
-                            to={{
-                              pathname: "/movies/" + params.id + "/review",
-                            }}
-                            state={{
-                              currentReview: review,
-                            }}
-                          >
-                            Edit
-                          </Link>
-                        </Col>
-                        <Col>
-                          <Button
-                            variant="link"
-                            onClick={() => onDeleteReview(review, index)}
-                          >
-                            Delete
-                          </Button>
-                        </Col>
-                      </Row>
-                    )}
-                  </div>
-                </div>
-              );
-            })} */}
+            <br></br>
+            {
+              user &&
+              nft.owner === user.googleId ? (
+                <form onSubmit={handleSubmit((data, e) => {
+                  try {
+                    sellNft(nft.id, data)
+                  } catch(e) {
+                    console.log(e)
+                  }
+                })}>
+                <input
+                  key={nft.id}
+                  placeholder="0.05"
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  {...register("price", { required: true })}
+                />
+                {errors.price && (
+                  <span className="error">Required</span>
+                )}
+                <input type="submit" value="Sell"/>
+              </form>
+              ) : <Button> Buy </Button>
+            }
           </Col>
         </Row>
       </Container>

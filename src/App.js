@@ -36,13 +36,15 @@ function App() {
 
   useEffect(() => {
     let loginData = JSON.parse(localStorage.getItem("login"));
+    console.log("loginData in app Js", loginData)
     if (loginData) {
       let loginExp = loginData.exp;
-      let now = Date.now() / 1000;
+      let now = Date.now() / 1000000000000;
       if (now < loginExp) {
         setUser(loginData);
       } else {
         // Expired
+        console.log("expired in App.js")
         localStorage.setItem("login", null);
       }
     }
@@ -62,7 +64,7 @@ function App() {
     if (user) {
       retrieveFavorites(user);
     }
-  }, [user]);
+  }, [user, retrieveFavorites]);
 
   const updateFavorites = useCallback(() => {
     var data = {
@@ -72,14 +74,14 @@ function App() {
     FavoritesDataService.updateFavorites(data).catch((e) => {
       console.log(e);
     });
-  }, [favorites]);
+  }, [favorites, user.googleId]);
 
   useEffect(() => {
     if (user) {
       updateFavorites();
     }
-  }, [favorites]);
-  console.log(user)
+  }, [favorites, updateFavorites, user]);
+
   return (
     <GoogleOAuthProvider clientId={clientId}>
       <div className="App">
@@ -112,8 +114,9 @@ function App() {
                   <Nav.Link className="collection-text" as={Link} to={"/mint"}>
                     Mint NFT
                   </Nav.Link>
-                  <Nav.Link className="collection-text" as={Link} to={"/mint"}>
-                  ${user.balance}
+                  
+                  <Nav.Link className="balance" as={Link} to={"/mint"}>
+                  {user.balance} ETH
                   </Nav.Link>
                   </>
                 )}

@@ -56,6 +56,15 @@ body {
   font-size: larger;
 }
 
+.balance {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-size: larger;
+  color: rgb(153, 255, 0);
+  border: 1px solid rgb(153, 255, 0);
+  margin-left: 3em;
+}
+
 .navbar {
   display: flex;
   align-items: center;

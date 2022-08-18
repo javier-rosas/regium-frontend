@@ -55,6 +55,13 @@ class NftDataService {
     );
   }
 
+  sellNft(data) {
+    return axios.put(
+      `${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts/sell`,
+      data
+    );
+  }
+
   // updateReview(data) {
   //     return axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/v1/nfts/review`, data)
   // }

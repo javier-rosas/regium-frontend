@@ -30,7 +30,7 @@ const Mint = ({ user }) => {
       data.googleId = user.googleId
       NftDataService.mintNft(data)
         .then((response) => {
-          navigate("/nfts");
+          navigate("/collection");
         })
         .catch((e) => {
           console.log(e);

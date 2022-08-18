@@ -1,11 +1,14 @@
 import React from 'react'
-import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
 import Card from "react-bootstrap/Card"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import UserDataService from "../services/users"
 import NftDataService from "../services/nfts" 
+import 'reactjs-popup/dist/index.css';
+import './NftCollection.css'
+import { useNavigate } from "react-router-dom";
+
 
 import { useState, useCallback, useEffect } from 'react'
 
@@ -15,7 +18,8 @@ const NftCollection = ({user}) => {
   
   const [nftIds, setNftIds] = useState([])
   const [nfts, setNfts] = useState([])
-
+  const navigate = useNavigate();
+  
   /*
   Helper method to make DB Get requests for individual nfts
   */
@@ -65,8 +69,6 @@ const NftCollection = ({user}) => {
   }, [getNftIds])
 
 
-
-  
   return (
     <Container className="Container">
       <Row className="movieRow">
@@ -75,10 +77,10 @@ const NftCollection = ({user}) => {
           <h1> No NFTs in your collection </h1>
         </div>
         :
-        nfts.map((nft) => {
+        nfts.map((nft, i) => {
           return (
-            <Col key={nft._id}>
-              <Card className="moviesListCard">
+            <Col key={nft.id}>
+              <Card className="moviesListCard" onClick={() => navigate("/nfts/" + nft.id)}>
                 <div className="nftImageDiv">
                   <Card.Img
                     className="smallPoster"
@@ -94,7 +96,6 @@ const NftCollection = ({user}) => {
                   <Card.Text>Rating: {nft.rated}</Card.Text>
                   <Card.Text>{nft.description}</Card.Text>
                  </Card.Body>
-                 <Button> Sell </Button>
               </Card>
             </Col>
           )
