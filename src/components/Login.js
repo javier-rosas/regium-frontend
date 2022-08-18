@@ -41,10 +41,10 @@ function Login({ user, setUser }) {
       } else {
         console.log("res", res[0])
         setUser(res[0])
-        localStorage.setItem("login", res[0]) 
+        localStorage.setItem("login", JSON.stringify(res[0])) 
       }
-      
-      
+    }).catch((e) => {
+      console.log(e)
     })
     
     console.log("Logged in succesfully.")
