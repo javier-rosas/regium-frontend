@@ -50,16 +50,16 @@ const NftCollection = ({user}) => {
 
 
   const getNftIds = useCallback(() => {
-    if (user) {
+    if (user && user.googleId) {
+      console.log("getNftIds in Nftcollection", user)
       UserDataService.getUser(user.googleId)
       .then((response) => {
-        setNftIds(response.data[0].nfts_owned)
+        setNftIds(response.data.nfts_owned)
       })
       .catch((e) => {
         console.log(e)
       })
     }
-    
   }, [user])
 
   

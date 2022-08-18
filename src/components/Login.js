@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useCallback } from "react";
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode  from 'jwt-decode';
@@ -9,7 +9,7 @@ const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID
 function Login({ user, setUser }) {
 
 
-  const getUser = useCallback( async (googleId, loginData) => {
+  const getUser = useCallback( async (googleId) => {
     try {
       const user = await UserDataService.getUser(googleId)
       return user.data
@@ -18,33 +18,23 @@ function Login({ user, setUser }) {
     }
   }, [])
 
+
   
-  // on succesful login 
-  const onSuccess = (res) => {
+   // on succesful login 
+   const onSuccess = (res) => {
     var tokenData = jwt_decode(res.credential)
     var loginData = {
       googleId: tokenData.sub,
       ...tokenData
     }
 
-    getUser(loginData.googleId)
-    .then((res) => {
-      if (Array.isArray(res) && res.length === 0) {
-        loginData.balance = 10 
-        localStorage.setItem("login", JSON.stringify(loginData)) 
-        console.log("loginData set in login js", loginData)
-        UserDataService.updateUser(loginData)
-        .catch((e) => {
-          console.log(e)
-        })
-        setUser(loginData)
-      } else {
-        setUser(res[0])
-        if (res[0]) {
-          console.log("res[0] set in login js", res[0])
-          localStorage.setItem("login", JSON.stringify(res[0])) 
-        }
-      }
+    loginData.balance = 10
+
+    
+    UserDataService.updateUser(loginData)
+    .then(() => {
+      setUser(loginData)
+      localStorage.setItem("login", JSON.stringify(loginData))  
     })
     .catch((e) => {
       console.log(e)
@@ -59,6 +49,7 @@ function Login({ user, setUser }) {
     console.log(`Login failed. Response: ${res}`)
   }
   
+  console.log("user in Login js", user)
   // JSX
   return (
     <div> 

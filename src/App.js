@@ -36,17 +36,27 @@ function App() {
   };
 
 
+  
   useEffect(() => {
     let loginData = JSON.parse(localStorage.getItem("login"));
-    console.log("loginData in app Js", loginData)
     if (loginData) {
-      setUser(loginData);
+      let loginExp = loginData.exp;
+      let now = Date.now() / 1000;
+      if (now < loginExp) {
+        setUser(loginData);
+      } else {
+        // Expired
+        localStorage.setItem("login", null);
+      }
     }
   }, []);
 
 
   const retrieveFavorites = useCallback((user) => {
-    if (user) {
+    
+    if (user) { 
+      console.log("retrieveFavorites", user )
+      console.log("user retrieveFavorites in App js", user.data)
       FavoritesDataService.getAllFavorites(user.googleId)
       .then((response) => {
         setFavorites(response.data.favorites);
@@ -57,8 +67,10 @@ function App() {
     }
   }, []);
 
+
   useEffect(() => {
     if (user) {
+      console.log("user in useEffect App js", user)
       retrieveFavorites(user);
     }
   }, [user, retrieveFavorites]);
@@ -78,6 +90,8 @@ function App() {
       updateFavorites();
     }
   }, [favorites, updateFavorites, user]);
+
+  console.log("user in app js", user)
 
   return (
     <GoogleOAuthProvider clientId={clientId}>

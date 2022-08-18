@@ -39,20 +39,17 @@ function Nft({ user, setUser }) {
 
   
   const getUser = useCallback((user) => {
-    if (user) {
+    if (user && user.googleId) {
       UserDataService.getUser(user.googleId)
       .then((response) => {
-        localStorage.setItem("login", JSON.stringify(response)) 
-        setUser(response)
+        console.log("REPONSEEEE", response)
+        localStorage.setItem("login", JSON.stringify(response.data)) 
+        setUser(response.data)
       })
       .catch((e) => {
         console.log(e)
       })
     }
-  }, [])
-
-  useEffect(() => {
-    if (user) getUser(user.googleId)
   }, [])
 
 
@@ -82,9 +79,7 @@ function Nft({ user, setUser }) {
           nftId: nftId, 
           userId: userId
         })
-      .then((res) => {
-        console.log("res in buyNft in Nft js", res)
-  
+      .then((res) => {  
         getUser(userId)
         setIsShowingConfetti(true)
         setTimeout(() => {
@@ -105,6 +100,7 @@ function Nft({ user, setUser }) {
           let obj = {
             id: id,
             name: response.data.name,
+            owner: response.data.owner,
             price: response.data.price,
             reviews: response.data.reviews,
             imageLink: response.data.imageLink,
@@ -120,8 +116,7 @@ function Nft({ user, setUser }) {
     getNft(params.id);
   }, [params.id]);
 
-  
-  console.log("nft in Nft js", nft)
+  console.log("NFT JS nft owner", nft.owner, "   GOOGLE ID  ", user )
   return (
     <div>
       <Container>
@@ -153,15 +148,20 @@ function Nft({ user, setUser }) {
               <Card.Header as="h5"> {nft.name} </Card.Header>
               <Card.Body>
                 <Card.Text>{nft.description}</Card.Text>
-                <Card.Text> Price: {nft.price} ETH </Card.Text>
-                <Card.Text> Balance: { user && user.balance} ETH  </Card.Text>
+                {nft && (
+                  <Card.Text> Price: {nft.price} ETH </Card.Text>
+
+                )}
+                {user && (
+                  <Card.Text> Balance: { user.balance} ETH  </Card.Text>
+                )
+                }
               </Card.Body>
             </Card>
             <br></br>
             <br></br>
             {
-              user && nft &&
-              nft.owner === user.googleId ? (
+              user && (nft.owner === user.googleId) ? (
                 <form onSubmit={handleSubmit((data, e) => {
                   try {
                     sellNft(nft.id, data)
@@ -183,7 +183,7 @@ function Nft({ user, setUser }) {
                 <input type="submit" value="Sell"/>
               </form>
               ) : <Button className="buyBtn" onClick={() => {
-                user && nft && buyNft(nft.id, user.googleId)
+                user && user.googleId && nft && nft.id && buyNft(nft.id, user.googleId)
               }}> Buy </Button>
             }
           </Col>
