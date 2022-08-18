@@ -5,7 +5,6 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import UserDataService from "../services/users"
 import NftDataService from "../services/nfts" 
-import 'reactjs-popup/dist/index.css';
 import './NftCollection.css'
 import { useNavigate } from "react-router-dom";
 
