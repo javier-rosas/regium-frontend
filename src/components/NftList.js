@@ -8,8 +8,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import { BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
-import {RevolvingDot} from 'react-loader-spinner';
-
+import { RevolvingDot } from "react-loader-spinner";
 
 import "./NftList.css";
 
@@ -43,10 +42,9 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
         setCurrentPage(response.data.page);
         setEntriesPerPage(response.data.entries_per_page);
         setTimeout(() => {
-          setLoading(false)
-          console.log("wait 1 second to show spinner")
-        }, 750)
-        
+          setLoading(false);
+          console.log("wait 1 second to show spinner");
+        }, 750);
       })
       .catch((e) => {
         console.log(e);
@@ -125,94 +123,95 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
   return (
     <div className="App">
       <Container className="main-container">
-      <div className="section">
-        <Form>
-          <Row>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Control
-                  type="text"
-                  placeholder="Search by name"
-                  value={searchName}
-                  onChange={onChangeSearchName}
-                />
-              </Form.Group>
-              <Button variant="primary" type="button" onClick={findByName}>
-                Search
-              </Button>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Control as="select" onChange={onChangeSearchGenre}>
-                  {genres.map((genre, i) => {
-                    return (
-                      <option value={genre} key={i}>
-                        {genre}
-                      </option>
-                    );
-                  })}
-                </Form.Control>
-              </Form.Group>
-              <Button variant="primary" type="button" onClick={findByGenre}>
-                Search
-              </Button>
-            </Col>
-          </Row>
-        </Form>
+        <div className="section">
+          <Form>
+            <Row>
+              <Col>
+                <Form.Group className="mb-3">
+                  <Form.Control
+                    type="text"
+                    placeholder="Search by name"
+                    value={searchName}
+                    onChange={onChangeSearchName}
+                  />
+                </Form.Group>
+                <Button variant="primary" type="button" onClick={findByName}>
+                  Search
+                </Button>
+              </Col>
+              <Col>
+                <Form.Group className="mb-3">
+                  <Form.Control as="select" onChange={onChangeSearchGenre}>
+                    {genres.map((genre, i) => {
+                      return (
+                        <option value={genre} key={i}>
+                          {genre}
+                        </option>
+                      );
+                    })}
+                  </Form.Control>
+                </Form.Group>
+                <Button variant="primary" type="button" onClick={findByGenre}>
+                  Search
+                </Button>
+              </Col>
+            </Row>
+          </Form>
         </div>
         <Row className="movieRow">
-          {loading ? 
-          <Card className="spinner">
-          <RevolvingDot /> 
-          </Card>
-          :
-          nfts.map((nft) => {
-            return (
-              <Col key={nft._id}>
-                <Card
-                  className="moviesListCard"
-                  onClick={() => navigate("/nfts/" + nft._id)}
-                >
-                  {user &&
-                    (favorites.includes(nft._id) ? (
-                      <BsSuitHeartFill
-                        className="heart heartFill"
-                        onClick={() => {
-                          deleteFavorite(nft._id);
-                          updateLikes(nft._id, false);
+          {loading ? (
+            <Card className="spinner">
+              <RevolvingDot />
+            </Card>
+          ) : (
+            nfts.map((nft) => {
+              return (
+                <Col key={nft._id}>
+                  <Card className="moviesListCard">
+                    {user &&
+                      (favorites.includes(nft._id) ? (
+                        <BsSuitHeartFill
+                          className="heart heartFill"
+                          onClick={() => {
+                            deleteFavorite(nft._id);
+                            updateLikes(nft._id, false);
+                          }}
+                        />
+                      ) : (
+                        <BsSuitHeart
+                          className="heart heartEmpty"
+                          onClick={() => {
+                            addFavorite(nft._id);
+                            updateLikes(nft._id, true);
+                          }}
+                        />
+                      ))}
+                    <div
+                      className="nftImageDiv"
+                      onClick={() => navigate("/nfts/" + nft._id)}
+                    >
+                      <Card.Img
+                        className="smallPoster"
+                        src={nft.imageLink}
+                        onError={({ currentTarget }) => {
+                          currentTarget.onerror = null;
+                          currentTarget.src = "/images/stand-in.jpeg";
                         }}
                       />
-                    ) : (
-                      <BsSuitHeart
-                        className="heart heartEmpty"
-                        onClick={() => {
-                          addFavorite(nft._id);
-                          updateLikes(nft._id, true);
-                        }}
-                      />
-                    ))}
-                  <div className="nftImageDiv">
-                    <Card.Img
-                      className="smallPoster"
-                      src={nft.imageLink}
-                      onError={({ currentTarget }) => {
-                        currentTarget.onerror = null;
-                        currentTarget.src = "/images/stand-in.jpeg";
-                      }}
-                    />
-                  </div>
-                  <Card.Body>
-                    <Card.Title> {nft.name} </Card.Title>
-                    <Card.Text>{nft.description}</Card.Text>
-                    <Card.Text>Genre: {nft.genre}</Card.Text>
-                    <Card.Text className="topLikedPrice">
-                      {nft.price + " ETH"}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-            );
-          })}
+                    </div>
+                    <Card.Body onClick={() => navigate("/nfts/" + nft._id)}>
+                      <Card.Title> {nft.name} </Card.Title>
+                      <Card.Text>{nft.description}</Card.Text>
+                      <Card.Text>Genre: {nft.genre}</Card.Text>
+                      <Card.Text className="topLikedPrice">
+                        {nft.price + " ETH"}
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              );
+            })
+          )}
         </Row>
         <br />
         Showing page: {currentPage + 1}

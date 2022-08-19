@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Nunito:wght@300&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Nunito:wght@300&display=swap");
 
 .landingPage h1 {
   margin: 150px 20px 50px;
@@ -21,7 +20,6 @@
   text-align: center;
 } */
 
-
 .spinner {
   margin: auto;
   background-color: transparent;
@@ -34,9 +32,7 @@
 
 .nftOfTheDayCard {
   margin: auto;
-
 }
-
 
 .landingPage h3 {
   margin: 50px 20px;
@@ -81,14 +77,14 @@
   width: 20px;
 }
 
-.landingPage .ct {
+.landingPage .nftOfTheDayInfo {
+  /* margin-right: 50px; */
+  flex: 1 1 0px;
   display: inline;
-  margin-right: 50px;
+  margin: 10px 0;
 }
 
 .landingPage .pr {
-  display: inline;
-  margin-left: 50px;
   color: rgb(153, 255, 0);
 }
 
@@ -100,8 +96,8 @@
 }
 
 .landingPage .bd {
-  /* height: 100px; */
   text-align: center;
+  display: flex;
 }
 
 .landingPage .landingPageRow {
@@ -111,10 +107,8 @@
 .landingPage .howToRow {
   background-color: rgb(43, 43, 43);
   list-style: none;
-  justify-content: center;
   display: flex;
-  padding: 3em;
-  /* line-height: 2; */
+  padding: 6em;
 }
 
 .topLikedImgDiv {
@@ -125,12 +119,8 @@
 .landingPage .howToItem {
   flex: 1 1 0px;
   display: inline;
-  padding: 20px;
-  margin: 30px;
-  /* border: 2px;
-  border-radius: 2%;
-  border-color: white;
-  border-style: solid; */
+  padding: 20px 40px;
+  line-height: 2;
 }
 
 .landingPage .likesSpan {
@@ -138,10 +128,6 @@
   margin-left: 15px;
   font-size: 20px;
 }
-
-/* .landingPage .movieRow {
-  margin: 0;
-} */
 
 .landingPage .topLikedBody {
   display: inline;

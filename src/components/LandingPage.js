@@ -7,8 +7,7 @@ import Image from "react-bootstrap/Image";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { BsSuitHeartFill } from "react-icons/bs";
-import {RevolvingDot} from 'react-loader-spinner';
-
+import { RevolvingDot } from "react-loader-spinner";
 
 import "./LandingPage.css";
 
@@ -37,10 +36,9 @@ const LandingPage = ({ user }) => {
       .then((response) => {
         setNftOfTheDay(response.data[0]);
         setTimeout(() => {
-          setLoading(false)
-          console.log("wait 1 second to show spinner")
-        }, 1000)
-        
+          setLoading(false);
+          console.log("wait 1 second to show spinner");
+        }, 1000);
       })
       .catch((e) => {
         console.log(e);
@@ -57,59 +55,68 @@ const LandingPage = ({ user }) => {
           </Col>
           <Col>
             <h4>Featured NFT</h4>
-            {loading ? 
-            <Card className="spinner">
-              <RevolvingDot /> 
-            </Card>
-            :nftOfTheDay && (
-              <Card
-                className="nftOfTheDayCard"
-                onClick={() => navigate("/nfts/" + nftOfTheDay._id)}
-              >
-                <div className="nftImageDiv">
-                <Card.Img
-                  className="smallPoster"
-                  src={nftOfTheDay.imageLink}
-                  onError={({ currentTarget }) => {
-                    currentTarget.onerror = null;
-                    currentTarget.src = "/images/stand-in.jpeg";
-                  }}
-                />
-                </div>
-                <Card.Body className="bd">
-                  <Card.Title className="ct"> {nftOfTheDay.name} </Card.Title>
-                  {/* <Card.Text className="gen">Genre: {nftOfTheDay.genre}</Card.Text> */}
-                  <Card.Title className="pr">
-                    {nftOfTheDay.price + " ETH"}
-                  </Card.Title>
-                  {/* <Link to={"/nfts/" + nftOfTheDay._id}>View Reviews</Link> */}
-                </Card.Body>
+            {loading ? (
+              <Card className="spinner">
+                <RevolvingDot />
               </Card>
+            ) : (
+              nftOfTheDay && (
+                <Card
+                  className="nftOfTheDayCard"
+                  onClick={() => navigate("/nfts/" + nftOfTheDay._id)}
+                >
+                  <div className="nftImageDiv">
+                    <Card.Img
+                      className="smallPoster"
+                      src={nftOfTheDay.imageLink}
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src = "/images/stand-in.jpeg";
+                      }}
+                    />
+                  </div>
+                  <Card.Body className="bd">
+                    <Card.Title className="nftOfTheDayInfo">
+                      {nftOfTheDay.name}
+                    </Card.Title>
+                    <Card.Title className="nftOfTheDayInfo pr">
+                      {nftOfTheDay.price + " ETH"}
+                    </Card.Title>
+                  </Card.Body>
+                </Card>
+              )
             )}
           </Col>
         </Row>
       </Container>
       <Container fluid className="landingPageRow howToRow">
         <Row>
-          <Col>
+          <Col className="howToItem">
             <h2>Browse</h2>
             <p>
               Click on Explore to browse some of the most extraordinary NFTs on
               the internet.
             </p>
           </Col>
-          <Col>
-            <h2>Buy</h2>
-              <p>
-                Once an NFT catches your eye simply open it and click on the Buy
-                button to buy it for the price listed.
+          <Col className="howToItem">
+            <h2>Mint</h2>
+            <p>
+              Go to the Mint NFT page and simply upload an image to mint your
+              own NFT!
             </p>
           </Col>
-          <Col>
+          <Col className="howToItem">
+            <h2>Buy</h2>
+            <p>
+              Once an NFT catches your eye simply open it and click on the Buy
+              button to buy it for the price listed.
+            </p>
+          </Col>
+          <Col className="howToItem">
             <h2>Sell</h2>
             <p>
-              Open any NFT you own and click on the Sell button to put the NFT up
-              for sale for a fixed price. Auctions coming soon!
+              Open any NFT you own and click on the Sell button to put the NFT
+              up for sale for a fixed price. Auctions coming soon!
             </p>
           </Col>
         </Row>
