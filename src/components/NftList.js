@@ -135,7 +135,7 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
                     onChange={onChangeSearchName}
                   />
                 </Form.Group>
-                <Button variant="primary" type="button" onClick={findByName}>
+                <Button variant="warning" type="button" onClick={findByName}>
                   Search
                 </Button>
               </Col>
@@ -151,7 +151,7 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
                     })}
                   </Form.Control>
                 </Form.Group>
-                <Button variant="primary" type="button" onClick={findByGenre}>
+                <Button variant="warning" type="button" onClick={findByGenre}>
                   Search
                 </Button>
               </Col>
@@ -191,7 +191,7 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
                       onClick={() => navigate("/nfts/" + nft._id)}
                     >
                       <Card.Img
-                        className="smallPoster"
+                        className="smallPoster nftListImg"
                         src={nft.imageLink}
                         onError={({ currentTarget }) => {
                           currentTarget.onerror = null;
@@ -214,9 +214,11 @@ function NftList({ user, favorites, addFavorite, deleteFavorite }) {
           )}
         </Row>
         <br />
-        Showing page: {currentPage + 1}
+        <br />
+        Showing page {currentPage + 1}
         <Button
-          variant="link"
+          className="nextResultsBtn"
+          variant="warning"
           onClick={() => {
             setCurrentPage(currentPage + 1);
           }}

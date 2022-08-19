@@ -77,6 +77,12 @@
   width: 20px;
 }
 
+.nftOfTheDayImg {
+  height: 20rem;
+  width: auto; /*maintain aspect ratio*/
+  max-width: 20rem;
+}
+
 .landingPage .nftOfTheDayInfo {
   /* margin-right: 50px; */
   flex: 1 1 0px;
@@ -136,7 +142,9 @@
 
 .landingPage .vsmallPoster {
   display: inline;
-  width: 8rem;
+  height: 8rem;
+  width: auto; /*maintain aspect ratio*/
+  max-width: 8rem;
   border-radius: 50%;
 }
 

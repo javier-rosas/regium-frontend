@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import NftDataService from "../services/nfts";
-import UserDataService from "../services/users"
+import UserDataService from "../services/users";
 import { useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
@@ -9,15 +9,14 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import { useForm } from "react-hook-form";
-import {useWindowSize} from '@react-hook/window-size'
-import Confetti from 'react-confetti'
+import { useWindowSize } from "@react-hook/window-size";
+import Confetti from "react-confetti";
 
 import "./Nft.css";
 
 function Nft({ user, setUser }) {
-
-  const { width, height } = useWindowSize()
-  const [isShowingConfetti, setIsShowingConfetti] = useState(false)
+  const { width, height } = useWindowSize();
+  const [isShowingConfetti, setIsShowingConfetti] = useState(false);
 
   let params = useParams();
 
@@ -25,7 +24,7 @@ function Nft({ user, setUser }) {
     id: null,
     name: "",
     price: "",
-    owner : "",
+    owner: "",
     reviews: [],
     description: "",
     imageLink: "",
@@ -35,63 +34,58 @@ function Nft({ user, setUser }) {
     register,
     handleSubmit,
     formState: { errors },
-    } = useForm();
+  } = useForm();
 
-  
   const getUser = useCallback((user) => {
     if (user && user.googleId) {
       UserDataService.getUser(user.googleId)
-      .then((response) => {
-        localStorage.setItem("login", JSON.stringify(response.data)) 
-        setUser(response.data)
-      })
-      .catch((e) => {
-        console.log(e)
-      })
+        .then((response) => {
+          localStorage.setItem("login", JSON.stringify(response.data));
+          setUser(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     }
-  }, [])
-
-  
+  }, []);
 
   const sellNft = (nftId, data) => {
     if (nftId && data) {
       NftDataService.sellNft({
-        nftId : nftId, 
-        price: parseFloat(data.price)
+        nftId: nftId,
+        price: parseFloat(data.price),
       })
-      .then(() => {
-        setIsShowingConfetti(true)
-        setTimeout(() => {
-          setIsShowingConfetti(false)
-        }, 4000)
-      })
-      .catch((e) => {
-        console.log(e)
-      })
+        .then(() => {
+          setIsShowingConfetti(true);
+          setTimeout(() => {
+            setIsShowingConfetti(false);
+          }, 4000);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     }
-  }
+  };
 
   const buyNft = (nftId, userId) => {
-    console.log("userid in Nft js", nftId)
-    if (nftId && userId){
-      NftDataService.buyNft(
-        {
-          nftId: nftId, 
-          userId: userId
+    console.log("userid in Nft js", nftId);
+    if (nftId && userId) {
+      NftDataService.buyNft({
+        nftId: nftId,
+        userId: userId,
+      })
+        .then((res) => {
+          getUser(userId);
+          setIsShowingConfetti(true);
+          setTimeout(() => {
+            setIsShowingConfetti(false);
+          }, 4000);
         })
-      .then((res) => {  
-        getUser(userId)
-        setIsShowingConfetti(true)
-        setTimeout(() => {
-          setIsShowingConfetti(false)
-        }, 4000)
-  
-      })
-      .catch((e) => {
-        console.log(e)
-      })
+        .catch((e) => {
+          console.log(e);
+        });
     }
-  }
+  };
 
   useEffect(() => {
     const getNft = (id) => {
@@ -117,19 +111,14 @@ function Nft({ user, setUser }) {
     getNft(params.id);
   }, [params.id]);
 
-  console.log("NFT JS nft owner", nft, "   GOOGLE ID  ", user )
+  console.log("NFT JS nft owner", nft, "   GOOGLE ID  ", user);
   return (
     <div>
-      <Container>
-        {
-          isShowingConfetti && (
-          <Confetti
-            width={width}
-            height={height}
-            run={true}/>
-          )
-        }
-        
+      <Container className="nftPage">
+        {isShowingConfetti && (
+          <Confetti width={width} height={height} run={true} />
+        )}
+
         <Row>
           <Col>
             <div className="poster">
@@ -149,27 +138,22 @@ function Nft({ user, setUser }) {
               <Card.Header as="h5"> {nft.name} </Card.Header>
               <Card.Body>
                 <Card.Text>{nft.description}</Card.Text>
-                {nft && (
-                  <Card.Text> Price: {nft.price} ETH </Card.Text>
-
-                )}
-                {user && (
-                  <Card.Text> Balance: { user.balance} ETH  </Card.Text>
-                )
-                }
+                {nft && <Card.Text> Price: {nft.price} ETH </Card.Text>}
+                {user && <Card.Text> Balance: {user.balance} ETH </Card.Text>}
               </Card.Body>
             </Card>
             <br></br>
             <br></br>
-            {
-              user && (nft.owner === user.googleId) ? (
-                <form onSubmit={handleSubmit((data, e) => {
+            {user && nft.owner === user.googleId ? (
+              <form
+                onSubmit={handleSubmit((data, e) => {
                   try {
-                    sellNft(nft.id, data)
-                  } catch(e) {
-                    console.log(e)
+                    sellNft(nft.id, data);
+                  } catch (e) {
+                    console.log(e);
                   }
-                })}>
+                })}
+              >
                 <input
                   key={nft.id}
                   placeholder="0.05"
@@ -178,15 +162,23 @@ function Nft({ user, setUser }) {
                   min="0"
                   {...register("price", { required: true })}
                 />
-                {errors.price && (
-                  <span className="error">Required</span>
-                )}
-                <input type="submit" value="Sell"/>
+                {errors.price && <span className="error">Required</span>}
+                <input type="submit" value="Sell" />
               </form>
-              ) : (<Button className="buyBtn" onClick={() => {
-               user.googleId && nft && nft.upForSale && buyNft(nft.id, user.googleId)
-              }}> Buy </Button>)
-            }
+            ) : (
+              <Button
+                className="buyBtn"
+                onClick={() => {
+                  user.googleId &&
+                    nft &&
+                    nft.upForSale &&
+                    buyNft(nft.id, user.googleId);
+                }}
+              >
+                {" "}
+                Buy{" "}
+              </Button>
+            )}
           </Col>
         </Row>
       </Container>

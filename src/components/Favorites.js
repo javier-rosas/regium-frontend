@@ -11,14 +11,16 @@ const Favorites = ({ user, favorites }) => {
   return (
     <div>
       <div className="favoritesContainer container">
-        <div className="favoritesPanel">
+        <div className="favoritesPanel favBox">
           {favorites.length > 0
-            ? "Drag your watchlist items to rank them"
-            : "There's nothing on your watchlist yet"}
+            ? "Drag your wishlist items to rank them"
+            : "There's nothing on your wishlist yet"}
         </div>
-        <DndProvider backend={HTML5Backend}>
-          <DnDContainer user={user} favorites={favorites} />
-        </DndProvider>
+        <div className="favBox">
+          <DndProvider backend={HTML5Backend}>
+            <DnDContainer user={user} favorites={favorites} />
+          </DndProvider>
+        </div>
       </div>
     </div>
   );

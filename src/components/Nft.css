@@ -11,11 +11,19 @@ p.review {
 }
 
 .bigPicture {
+  height: 30rem;
+  width: auto;
+  max-width: 30rem;
   float: right;
+  margin-right: 80px;
+}
+
+.nftPage {
+  margin: 80px 40px;
 }
 
 input[type="submit"] {
-  background:  rgb(153, 255, 0);
+  background: rgb(153, 255, 0);
   color: white;
   text-transform: uppercase;
   border: none;
@@ -44,7 +52,6 @@ input[type="submit"]:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
 input {
@@ -60,12 +67,12 @@ input {
 }
 
 .buyBtn {
-  background: blue;
+  background: rgb(42, 42, 255);
   color: white;
   text-transform: uppercase;
   border: none;
-  border-radius: 10%;
-  width: 100%;
+  margin-left: 25%;
+  width: 50%;
   padding: 10px;
   font-size: 20px;
   letter-spacing: 10px;

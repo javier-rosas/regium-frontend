@@ -67,7 +67,7 @@ const LandingPage = ({ user }) => {
                 >
                   <div className="nftImageDiv">
                     <Card.Img
-                      className="smallPoster"
+                      className="smallPoster nftOfTheDayImg"
                       src={nftOfTheDay.imageLink}
                       onError={({ currentTarget }) => {
                         currentTarget.onerror = null;

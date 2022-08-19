@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Nunito:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Nunito:wght@300&display=swap");
 
 .favoritesCard {
   margin: 0.5rem;
@@ -10,10 +10,6 @@
   border-color: gray;
 }
 
-.cardOuterDiv {
-  border-radius: 5%;
-}
-
 .favoritesPoster {
   width: 150px;
   height: 100px;
@@ -21,7 +17,7 @@
 }
 
 .favoritesNumber {
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   justify-content: center;
   color: blue;
   background-color: white;
@@ -55,7 +51,7 @@
   vertical-align: middle;
   max-height: 100px;
   overflow: hidden;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
 .favoritesPanel {
@@ -63,18 +59,23 @@
   min-height: 100vh;
   padding: 1rem;
   font-size: 2em;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   font-weight: bold;
 }
 
 .favoritesContainer {
   display: flex;
-  
+  justify-content: center;
+  text-align: center;
 }
 
 .cardOuterDiv {
   padding: 0.5rem;
   margin: 0.7rem;
-  background-color: rgb(153, 255, 0);
+  background-color: whitesmoke;
   /* background-color: white; */
+}
+
+.favBox {
+  margin: 50px;
 }

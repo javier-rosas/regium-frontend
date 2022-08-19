@@ -1,15 +1,13 @@
-
 .main-container {
-  display: flex; 
+  display: flex;
   flex-direction: column;
   justify-content: column;
   align-items: center;
-
 }
 
 .section {
   margin-top: 10px;
-  width: 90%
+  width: 90%;
 }
 
 .movieRow {
@@ -19,7 +17,6 @@
 .App .topLikedPrice {
   color: rgb(153, 255, 0);
 }
-
 
 .card {
   overflow: hidden;
@@ -59,6 +56,12 @@ div.poster {
   transition: 0.3s all ease-in-out;
 }
 
+.nftListImg {
+  height: 18rem;
+  width: auto; /*maintain aspect ratio*/
+  max-width: 18rem;
+}
+
 .heart {
   width: 32.5em;
   height: 4em;
@@ -76,4 +79,8 @@ div.poster {
 
 .heartEmpty {
   fill: white;
+}
+
+.nextResultsBtn {
+  margin-top: 10px;
 }
