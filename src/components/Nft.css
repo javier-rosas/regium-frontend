@@ -22,16 +22,18 @@ p.review {
   margin: 80px 40px;
 }
 
-input[type="submit"] {
-  background: rgb(153, 255, 0);
+.nftPage input[type="submit"] {
+  background: rgb(124, 199, 11);
   color: white;
   text-transform: uppercase;
   border: none;
-  border-radius: 10%;
-
+  border-radius: 0;
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 40px;
   padding: 10px;
   font-size: 20px;
-  letter-spacing: 10px;
+  letter-spacing: 5px;
 }
 
 input[type="submit"]:hover {

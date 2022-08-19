@@ -163,7 +163,7 @@ function Nft({ user, setUser }) {
                   {...register("price", { required: true })}
                 />
                 {errors.price && <span className="error">Required</span>}
-                <input type="submit" value="Sell" />
+                <input type="submit" value="Put up for sale" />
               </form>
             ) : (
               <Button

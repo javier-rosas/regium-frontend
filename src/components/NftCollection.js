@@ -27,7 +27,7 @@ const NftCollection = ({ user }) => {
       name: res.data.name,
       imageLink: res.data.imageLink,
       description: res.data.description,
-      price: res.data.price,
+      likes: res.data.likes,
     };
     return nft;
   };
@@ -93,7 +93,7 @@ const NftCollection = ({ user }) => {
                   <Card.Body>
                     <Card.Title> {nft.name} </Card.Title>
                     <Card.Text>{nft.description}</Card.Text>
-                    <Card.Text>{nft.price} ETH</Card.Text>
+                    <Card.Text>{nft.likes} Likes</Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
