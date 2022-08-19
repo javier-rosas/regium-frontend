@@ -45,7 +45,9 @@ const NftCollection = ({ user }) => {
       }
       setNfts(() => updatedArr);
     }
-    fetchData();
+    if (Array.isArray(nftIds)){
+      fetchData();
+    }
   }, [nftIds]);
 
   const getNftIds = useCallback(() => {
@@ -62,9 +64,7 @@ const NftCollection = ({ user }) => {
   }, [user]);
 
   useEffect(() => {
-    if (Array.isArray(nftIds)){
       getNftIds();
-    }
   }, []);
 
   return (
