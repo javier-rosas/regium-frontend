@@ -103,6 +103,7 @@ function Nft({ user, setUser }) {
             owner: response.data.owner,
             price: response.data.price,
             reviews: response.data.reviews,
+            upForSale: response.data.upForSale,
             imageLink: response.data.imageLink,
             description: response.data.description,
           };
@@ -116,7 +117,7 @@ function Nft({ user, setUser }) {
     getNft(params.id);
   }, [params.id]);
 
-  console.log("NFT JS nft owner", nft.owner, "   GOOGLE ID  ", user )
+  console.log("NFT JS nft owner", nft, "   GOOGLE ID  ", user )
   return (
     <div>
       <Container>
@@ -183,7 +184,7 @@ function Nft({ user, setUser }) {
                 <input type="submit" value="Sell"/>
               </form>
               ) : (<Button className="buyBtn" onClick={() => {
-                user && user.googleId && nft && nft.id && nft.upForSale && buyNft(nft.id, user.googleId)
+               user.googleId && nft && nft.upForSale && buyNft(nft.id, user.googleId)
               }}> Buy </Button>)
             }
           </Col>
