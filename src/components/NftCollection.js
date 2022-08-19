@@ -62,7 +62,9 @@ const NftCollection = ({ user }) => {
   }, [user]);
 
   useEffect(() => {
-    getNftIds();
+    if (Array.isArray(nftIds)){
+      getNftIds();
+    }
   }, []);
 
   return (

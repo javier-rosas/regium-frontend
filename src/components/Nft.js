@@ -96,7 +96,6 @@ function Nft({ user, setUser }) {
             name: response.data.name,
             owner: response.data.owner,
             price: response.data.price,
-            reviews: response.data.reviews,
             upForSale: response.data.upForSale,
             imageLink: response.data.imageLink,
             description: response.data.description,
