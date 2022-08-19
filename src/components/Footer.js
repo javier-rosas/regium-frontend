@@ -1,7 +1,7 @@
 import React from "react";
 import { MDBFooter, MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
 
-import "./Footer.css";
+import "./styles/Footer.css";
 
 export default function App() {
   return (
@@ -23,8 +23,6 @@ export default function App() {
             </MDBCol>
           </MDBRow>
         </MDBContainer>
-      
-
         <div
           className="text-center p-4"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}

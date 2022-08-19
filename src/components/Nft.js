@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { useWindowSize } from "@react-hook/window-size";
 import Confetti from "react-confetti";
 
-import "./Nft.css";
+import "./styles/Nft.css";
 
 function Nft({ user, setUser }) {
   const { width, height } = useWindowSize();

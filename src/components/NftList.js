@@ -10,7 +10,7 @@ import Card from "react-bootstrap/Card";
 import { BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
 import { RevolvingDot } from "react-loader-spinner";
 
-import "./NftList.css";
+import "./styles/NftList.css";
 
 function NftList({ user, favorites, addFavorite, deleteFavorite }) {
   const [nfts, setNfts] = useState([]);

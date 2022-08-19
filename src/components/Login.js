@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { useCallback } from "react";
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode  from 'jwt-decode';

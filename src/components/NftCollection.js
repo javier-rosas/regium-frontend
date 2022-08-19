@@ -5,12 +5,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import UserDataService from "../services/users";
 import NftDataService from "../services/nfts";
-import "./NftCollection.css";
 import { useNavigate } from "react-router-dom";
-
 import { useState, useCallback, useEffect } from "react";
 
-import "./NftList.css";
+import "./styles/NftList.css";
+
 
 const NftCollection = ({ user }) => {
   const [nftIds, setNftIds] = useState([]);

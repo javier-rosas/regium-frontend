@@ -9,7 +9,8 @@ import Row from "react-bootstrap/Row";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { RevolvingDot } from "react-loader-spinner";
 
-import "./LandingPage.css";
+import "./styles/LandingPage.css";
+
 
 const LandingPage = ({ user }) => {
   const [nfts, setNfts] = useState([]);

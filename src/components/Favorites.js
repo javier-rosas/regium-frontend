@@ -1,11 +1,9 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
 import DnDContainer from "./DNDContainer";
-
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
-import "./Favorites.css";
+import "./styles/Favorites.css";
 
 const Favorites = ({ user, favorites }) => {
   return (

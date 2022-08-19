@@ -2,7 +2,7 @@ import React from "react"
 import { googleLogout } from '@react-oauth/google';
 import Button from 'react-bootstrap/Button'
 
-import "./Logout.css"
+import "./styles/Logout.css"
 
 function Logout( {setUser} ) {
 

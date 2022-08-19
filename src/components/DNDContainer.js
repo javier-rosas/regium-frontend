@@ -1,9 +1,9 @@
 import update from "immutability-helper";
 import { useCallback, useEffect, useState } from "react";
 import { DnDCard } from "./DNDCard";
-
 import NftDataService from "../services/nfts";
 import FavoritesDataService from "../services/favorites";
+
 
 const DnDContainer = ({ user, favorites }) => {
   {

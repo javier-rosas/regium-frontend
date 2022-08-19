@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { Card } from "react-bootstrap";
 import { useDrag, useDrop } from "react-dnd";
 
-import "./Favorites.css";
+import "./styles/Favorites.css";
 
 export const DnDCard = ({ id, name, imageLink, index, moveCard }) => {
   const ref = useRef(null);

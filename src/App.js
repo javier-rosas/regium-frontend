@@ -9,21 +9,20 @@ import Login from "./components/Login.js";
 import Logout from "./components/Logout.js";
 import NftList from "./components/NftList";
 import Footer from "./components/Footer";
-// import AddReview from "./components/AddReview";
 import Nft from "./components/Nft";
 import React from "react";
 import FavoritesDataService from "./services/favorites";
-import UserDataService from "./services/users"
 import Favorites from "./components/Favorites.js";
 import LandingPage from "./components/LandingPage.js";
 import NftCollection from "./components/NftCollection";
 import Mint from "./components/Mint"
 
-import "./App.css";
+import "./components/styles/App.css";
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 function App() {
+
   const [user, setUser] = useState(null);
   const [favorites, setFavorites] = useState([]);
 
@@ -35,8 +34,6 @@ function App() {
     setFavorites(favorites.filter((f) => f !== movieId));
   };
 
-
-  
   useEffect(() => {
     let loginData = JSON.parse(localStorage.getItem("login"));
     if (loginData) {
@@ -75,6 +72,7 @@ function App() {
     }
   }, [user, retrieveFavorites]);
 
+
   const updateFavorites = useCallback(() => {
     var data = {
       _id: user.googleId,
@@ -85,13 +83,13 @@ function App() {
     });
   }, [favorites, user]);
 
+
   useEffect(() => {
     if (user) {
       updateFavorites();
     }
   }, [favorites, updateFavorites, user]);
 
-  console.log("user in app js", user)
 
   return (
     <GoogleOAuthProvider clientId={clientId}>

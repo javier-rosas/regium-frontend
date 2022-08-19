@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import NftDataService from "../services/nfts";
 import { useNavigate } from "react-router-dom";
 
-import "./Mint.css";
+import "./styles/Mint.css";
 
 const Mint = ({ user }) => {
   const {
