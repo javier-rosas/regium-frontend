@@ -1,5 +1,5 @@
 input[type="submit"] {
-  background:  rgb(153, 255, 0);
+  background: rgb(153, 255, 0);
   color: white;
   text-transform: uppercase;
   border: none;
@@ -19,6 +19,12 @@ input[type="submit"]:hover {
   color: #bf1650;
 }
 
+.nftCollImg {
+  height: 20rem;
+  width: auto; /*maintain aspect ratio*/
+  max-width: 20rem;
+}
+
 .error::before {
   display: inline;
   content: "⚠ ";
@@ -28,7 +34,6 @@ input[type="submit"]:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
 input {

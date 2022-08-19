@@ -24,10 +24,11 @@ const Mint = ({ user }) => {
   }
 
   const onSubmit = (data) => {
-    data.price = parseInt(data.price)
-    create_blob(data.image, function (blob_string) {
-      data.image = blob_string;
-      data.googleId = user.googleId
+    data.price = parseFloat(data.price);
+    console.log(data.price);
+    create_blob(data.imageLink, function (blob_string) {
+      data.imageLink = blob_string;
+      data.googleId = user.googleId;
       NftDataService.mintNft(data)
         .then((response) => {
           navigate("/collection");
@@ -48,9 +49,9 @@ const Mint = ({ user }) => {
           <input
             type="file"
             accept="image/*"
-            {...register("image", { required: true })}
+            {...register("imageLink", { required: true })}
           />
-          {errors.image && (
+          {errors.imageLink && (
             <span className="error">This field is required</span>
           )}
 
