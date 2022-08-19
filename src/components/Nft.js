@@ -166,18 +166,18 @@ function Nft({ user, setUser }) {
                 <input type="submit" value="Put up for sale" />
               </form>
             ) : (
-              <Button
-                className="buyBtn"
-                onClick={() => {
-                  user.googleId &&
-                    nft &&
-                    nft.upForSale &&
+              user.googleId &&
+              nft &&
+              nft.upForSale && (
+                <Button
+                  className="buyBtn"
+                  onClick={() => {
                     buyNft(nft.id, user.googleId);
-                }}
-              >
-                {" "}
-                Buy{" "}
-              </Button>
+                  }}
+                >
+                  Buy
+                </Button>
+              )
             )}
           </Col>
         </Row>
